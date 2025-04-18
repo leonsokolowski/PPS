@@ -9,8 +9,23 @@ import { User } from '@supabase/supabase-js';
 export class AuthService {
   sb = inject(SupabaseService)
   router = inject(Router)
-  usuarioActual : User | null = null;
-  constructor() { }
+  usuario_actual : User | null = null;
+  constructor() {
+    this.sb.supabase.auth.onAuthStateChange((event, session) => {
+      console.log(event, session);
+
+      if (session === null) //Se cierra sesión o no hay sesion
+      {
+        this.usuario_actual = null;
+        //redirigir al login
+        this.router.navigateByUrl("/login");
+      }else{ //si hay sesion
+        this.usuario_actual = session.user;
+        //redigir al home
+        this.router.navigateByUrl("/home");
+      }
+    });
+   }
 
   async iniciarSesion(email: string, password: string) 
   {
