@@ -2,7 +2,6 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormBuilder, FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule} from '@angular/forms';
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel, IonInput, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle} from '@ionic/angular/standalone';
-import { SupabaseService } from '../services/supabase.service';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
@@ -11,18 +10,20 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login.page.html',
   styleUrls: ['./login.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule,IonContent, IonHeader, IonTitle, IonToolbar, IonItem, IonLabel,IonInput,IonButton,IonCard, IonCardContent, IonCardHeader, IonCardTitle, RouterModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule,IonContent, IonItem, IonLabel,IonInput,IonButton,IonCard, IonCardContent, IonCardHeader, IonCardTitle, RouterModule]
 })
 export class LoginPage implements OnInit {
 
   auth = inject(AuthService);
+  admin_email:string = "";
+  admin_password:string = "";
 
   formLogin = new FormGroup({
     'email': new FormControl("", [Validators.required, Validators.email]),
     'password': new FormControl("", [Validators.required, Validators.minLength(8)])})
   
   errorMessage: string = ""
-  constructor(private supabase: SupabaseService, private router: Router) {}
+  constructor(private router: Router) {}
 
   async login()
   {
@@ -38,6 +39,29 @@ export class LoginPage implements OnInit {
     else
     {
       this.router.navigate(['/home']);
+    }
+  }
+
+  accesoRapido(id:number)
+  {
+    switch(id)
+    {
+      case 0:
+        this.admin_email = "";
+        this.admin_password = "";
+        break
+      case 1:
+        this.admin_email = "admin1@gmail.com";
+        this.admin_password = "admin1password";
+        break
+      case 2:
+        this.admin_email = "admin2@gmail.com";
+        this.admin_password = "admin2password";
+        break
+      case 3:
+        this.admin_email = "admin3@gmail.com";
+        this.admin_password = "admin3password";
+        break
     }
   }
 

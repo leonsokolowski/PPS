@@ -11,10 +11,26 @@ ion-content {
 
   .center-container {
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
     height: 100vh; // ocupa toda la altura de la pantalla
     width: 100%;
+  }
+  .register-link
+  {
+    display: flex;
+    justify-content: center;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: color 0.2s ease;
+    cursor: pointer;
+  }
+
+  .register-link:hover
+  {
+    color: #ff8622;
+    text-decoration: underline;
   }
 
   .error-msg {
@@ -44,7 +60,7 @@ ion-content {
   
   ion-button {
     margin-top: 20px;
-    --background: #ffe09e;
+    --background: #ffac68;
   }
   ion-button:hover{
     --background: #ff8622;
