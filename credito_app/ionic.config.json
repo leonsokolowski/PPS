@@ -1,0 +1,7 @@
+{
+  "name": "credito_app",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
