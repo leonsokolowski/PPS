@@ -1,3 +1,72 @@
-<p>
-  login works!
-</p>
+<ion-content class="login-container">
+  <div class="wave-background"></div>
+  
+  <div class="login-form-wrapper">
+    <div class="logo-container">
+      <div class="app-logo">
+        <div class="logo-circle"></div>
+        <h1 class="app-name">Memotest<span>App</span></h1>
+      </div>
+    </div>
+
+    <div class="form-container">
+      <h2 class="login-heading">Inicio de Sesión</h2>
+      
+      <form [formGroup]="formLogin" (ngSubmit)="login()">
+        <div class="form-group">
+          <div class="input-container">
+            <ion-input 
+              type="email" 
+              formControlName="email"
+              [(ngModel)]="admin_email" 
+              placeholder="Correo electrónico">
+            </ion-input>
+            <div class="input-icon">✉️</div>
+          </div>
+          <div class="validation-message" *ngIf="formLogin.get('email')?.invalid && formLogin.get('email')?.touched">
+            <span *ngIf="formLogin.get('email')?.errors?.['required']">Correo requerido</span>
+            <span *ngIf="formLogin.get('email')?.errors?.['email']">Formato de correo inválido</span>
+          </div>
+        </div>
+        
+        <div class="form-group">
+          <div class="input-container">
+            <ion-input 
+              type="password" 
+              formControlName="password"
+              [(ngModel)]="admin_password" 
+              placeholder="Contraseña">
+            </ion-input>
+            <div class="input-icon">🔒</div>
+          </div>
+          <div class="validation-message" *ngIf="formLogin.get('password')?.invalid && formLogin.get('password')?.touched">
+            <span *ngIf="formLogin.get('password')?.errors?.['required']">Contraseña requerida</span>
+            <span *ngIf="formLogin.get('password')?.errors?.['minlength']">Mínimo 8 caracteres</span>
+          </div>
+        </div>
+        
+        <div class="server-error" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+        
+        <ion-button 
+          expand="block" 
+          type="submit" 
+          [disabled]="formLogin.invalid" 
+          class="login-button">
+          Ingresar
+        </ion-button>
+      </form>
+    </div>
+    
+    <div class="quick-access-section">
+      <p class="quick-access-label">Acceso Rápido</p>
+      <div class="quick-buttons">
+        <div class="quick-button" (click)="accesoRapido(1)">Admin 1</div>
+        <div class="quick-button" (click)="accesoRapido(2)">Admin 2</div>
+        <div class="quick-button" (click)="accesoRapido(3)">Admin 3</div>
+        <div class="quick-button clear" (click)="accesoRapido(0)">Limpiar</div>
+      </div>
+    </div>
+  </div>
+</ion-content>

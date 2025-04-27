@@ -1,3 +1,36 @@
-<p>
-  login works!
-</p>
+<ion-content [fullscreen]="true" class="login-content">
+  <div class="login-container">
+    <div class="login-box">
+      <h2 class="login-title">Ingreso a Crédito App</h2>
+
+      <form [formGroup]="formLogin" (click)="login()" class="login-form">
+        <ion-item lines="none">
+          <ion-label position="stacked">Correo electrónico</ion-label>
+          <ion-input type="email" formControlName="email" [(ngModel)]="admin_email"></ion-input>
+        </ion-item>
+
+        <ion-item lines="none">
+          <ion-label position="stacked">Contraseña</ion-label>
+          <ion-input type="password" formControlName="password" [(ngModel)]="admin_password"></ion-input>
+        </ion-item>
+
+        <div class="error-text" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <ion-button expand="block" class="login-btn" type="submit">
+          Iniciar Sesión
+        </ion-button>
+      </form>
+
+      <div class="accesos" style="color: green;">
+        <p>Accesos rápidos:</p>
+        <div class="btn-accesos">
+          <ion-button size="small" fill="outline" (click)="accesoRapido(1)">Admin 1</ion-button>
+          <ion-button size="small" fill="outline" (click)="accesoRapido(2)">Admin 2</ion-button>
+          <ion-button size="small" fill="outline" (click)="accesoRapido(3)">Admin 3</ion-button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

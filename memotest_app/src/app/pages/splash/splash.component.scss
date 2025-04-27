@@ -1,0 +1,107 @@
+
+.splash-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #000;
+}
+
+.fondo {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+.icono {
+  position: absolute;
+  top: 47%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 200px;
+  height: auto;
+  z-index: 3;
+  opacity: 0;
+  animation: zoomIn 0.8s ease-out 0.5s forwards;
+}
+
+.engranajes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.engranaje {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  opacity: 0.8;
+  animation: caerEngranaje 5s linear infinite;
+}
+
+// Cada engranaje empieza en diferente posición y tiempo
+.engranaje:nth-child(1) { left: 47%; animation-delay: 0s; }
+.engranaje:nth-child(2) { left: 55%; animation-delay: 0.5s; }
+.engranaje:nth-child(3) { left: 50%; animation-delay: 1s; }
+.engranaje:nth-child(4) { left: 63%; animation-delay: 1.5s; }
+.engranaje:nth-child(5) { left: 61%; animation-delay: 2s; }
+.engranaje:nth-child(6) { left: 43%; animation-delay: 2.5s; }
+.engranaje:nth-child(7) { left: 40%; animation-delay: 3s; }
+.engranaje:nth-child(8) { left: 60%; animation-delay: 3.5s; }
+.engranaje:nth-child(9) { left: 54%; animation-delay: 4s; }
+.engranaje:nth-child(10) { left: 57%; animation-delay: 4.5s; }
+
+@keyframes caerEngranaje {
+  0% {
+    top: -10%;
+    transform: rotate(0deg);
+  }
+  100% {
+    top: 110%;
+    transform: rotate(360deg);
+  }
+}
+
+.titulo {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 320px;
+  height: auto;
+  animation: zoomIn 0.8s ease-out 2s forwards;
+  opacity: 0;
+  z-index: 3;
+}
+
+.division {
+  position: absolute;
+  top: 65%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0);
+  width: 180px;
+  height: auto;
+  animation: zoomIn 0.8s ease-out 2.5s forwards;
+  opacity: 0;
+  z-index: 3;
+}
+
+@keyframes zoomIn {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}

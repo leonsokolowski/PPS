@@ -1,0 +1,99 @@
+.splash-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+  }
+  
+  /* Fondo */
+  .fondo {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+  }
+  
+  /* Flecha principal con barrido vertical */
+  .flecha-mask {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 1;
+  }
+  
+  .flecha {
+    position: absolute;
+    width: 30vw;  /* Tamaño de la flecha principal */
+    height: auto;
+    top: 14.5%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    opacity: 1;
+    clip-path: inset(100% 0 0 0); /* Inicialmente oculta */
+    animation: revelarFlecha 2s ease-out 3.5s forwards; /* Barrido vertical */
+  }
+  
+  /* Animación de barrido vertical */
+  @keyframes revelarFlecha {
+    0% {
+      clip-path: inset(100% 0 0 0); /* Inicialmente oculta */
+    }
+    100% {
+      clip-path: inset(0% 0 0 0); /* Se revela de abajo hacia arriba */
+    }
+  }
+  
+  /* Icono */
+  .icono {
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 180px;
+    height: auto;
+    animation: zoomIn 0.8s ease-out 1s forwards;  /* Reducción del tiempo de retardo */
+    z-index: 3;
+  }
+  
+  /* Nombre */
+  .titulo {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 320px;
+    height: auto;
+    animation: zoomIn 0.8s ease-out 1.3s forwards; /* Reducción del tiempo de retardo */
+    z-index: 3;
+  }
+  
+  /* División */
+  .division {
+    position: absolute;
+    top: 60%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 180px;
+    height: auto;
+    animation: zoomIn 0.8s ease-out 1.6s forwards; /* Reducción del tiempo de retardo */
+    z-index: 3;
+  }
+  
+  /* Zoom in para los 3 elementos */
+  @keyframes zoomIn {
+    0% {
+      opacity: 0;
+      transform: translate(-50%, -50%) scale(0);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(-50%, -50%) scale(1);
+    }
+  }
+  

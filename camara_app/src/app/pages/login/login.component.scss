@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;600&display=swap');
+
+.login-content {
+  --background: #ffe09e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Quicksand', sans-serif;
+}
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+}
+
+.login-box {
+  background: #fff;
+  padding: 30px 24px;
+  border-radius: 18px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 360px;
+  text-align: center;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.title {
+  font-size: 28px;
+  font-weight: 600;
+  color: #ff8622;
+  margin-bottom: 6px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 22px;
+}
+
+.input-item {
+  --background: transparent;
+  --border-color: #ffac68;
+  border-radius: 10px;
+  margin-bottom: 16px;
+  --highlight-color-focused: #ffac68;
+}
+
+ion-label {
+  font-size: 14px;
+  color: #444;
+}
+
+ion-input {
+  font-size: 15px;
+  color: #333;
+}
+
+.login-btn {
+  --background: #ffac68;
+  --border-radius: 10px;
+  font-weight: 600;
+  margin-top: 16px;
+  transition: background 0.3s ease;
+}
+
+.login-btn:hover {
+  --background: #ff8622;
+}
+
+.quick-access {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 24px;
+
+  ion-button {
+    --color: #ff8622;
+    --border-color: #ffac68;
+    --border-radius: 8px;
+    font-weight: 500;
+  }
+
+  ion-button:hover {
+    --background: #ff8622;
+    --color: white;
+  }
+}
+
+.clear-btn {
+  margin-top: 10px;
+  color: #c53030;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.error-msg {
+  color: #e53935;
+  font-size: 13px;
+  font-weight: bold;
+  margin-top: 8px;
+  text-align: center;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,3 +1,18 @@
-<p>
-  home works!
-</p>
+<ion-content [fullscreen]="true" class="home-content">
+  <div class="home-wrapper">
+    <ion-card class="home-card">
+      <ion-card-header>
+        <ion-card-title class="home-title">
+          ¡Hola, {{ auth.usuario_actual?.email }}!
+        </ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        <p class="sub-text">Gracias por usar Crédito App.</p>
+
+        <ion-button expand="block" class="logout-btn" (click)="logout()">
+          Cerrar Sesión
+        </ion-button>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

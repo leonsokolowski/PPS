@@ -1,0 +1,99 @@
+.splash-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  
+    .fondo {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+  
+    .ladron, .policia {
+      position: absolute;
+      bottom: 15%;
+      width: 100px;
+      height: auto;
+      z-index: 2;
+    }
+  
+    .ladron {
+      left: -100px;
+      animation: moverLadron 3s ease-out forwards;
+    }
+  
+    .icono {
+      position: absolute;
+      top: 48%; // MÁS CERCA DE LA DIVISIÓN
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 150px;
+      height: auto;
+      opacity: 0;
+      animation: aparecerIcono 1s ease-out 3s forwards;
+      z-index: 3;
+    }
+  
+    .policia {
+      left: -100px;
+      animation: moverPolicia 3s ease-out 4.5s forwards;
+    }
+  
+    .titulo {
+      position: absolute;
+      top: 32%; // MÁS CERCA DEL ICONO
+      left: -300px;
+      width: 320px; // MÁS GRANDE TODAVÍA
+      height: auto;
+      animation: entrarTitulo 1s ease-out 8s forwards;
+      z-index: 4;
+    }
+  
+    .division {
+      position: absolute;
+      top: 58%; // SUBIMOS para acercarlo aún más
+      left: -300px;
+      width: 180px;
+      height: auto;
+      animation: entrarDivision 1s ease-out 8s forwards;
+      z-index: 4;
+    }
+  }
+  
+  // Animaciones keyframes
+  
+  @keyframes moverLadron {
+    to {
+      left: 110%;
+    }
+  }
+  
+  @keyframes aparecerIcono {
+    to {
+      opacity: 1;
+    }
+  }
+  
+  @keyframes moverPolicia {
+    to {
+      left: 110%;
+    }
+  }
+  
+  @keyframes entrarTitulo {
+    to {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  
+  @keyframes entrarDivision {
+    to {
+      left: 50%;
+      transform: translateX(-50%);
+    }
+  }
+  

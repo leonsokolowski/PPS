@@ -10,7 +10,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './home.page.html',
   styleUrls: ['./home.page.scss'],
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule,IonContent, IonItem, IonLabel,IonInput,IonButton,IonCard, IonCardContent, IonCardHeader, IonCardTitle, RouterModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule,IonContent,IonButton,IonCard, IonCardContent, IonCardHeader, IonCardTitle, RouterModule]
 })
 export class HomePage implements OnInit {
   auth = inject(AuthService);

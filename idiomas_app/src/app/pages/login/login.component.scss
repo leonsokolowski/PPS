@@ -1,0 +1,135 @@
+// Importación de la fuente Abril Display
+// @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+.login-container {
+  --background: #327c72;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  // font-family: 'Abril Fatface', serif;
+}
+
+.login-form-container {
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.login-card {
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  // font-family: 'Abril Fatface', serif;
+}
+
+.login-title {
+  text-align: center;
+  color: #327c72;
+  font-size: 28px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  // font-family: 'Abril Fatface', serif;
+  letter-spacing: 0.5px;
+}
+
+.form-item {
+  margin-bottom: 16px;
+  --background: transparent;
+  --border-color: #dcdcdc;
+  // font-family: 'Abril Fatface', serif;
+}
+
+ion-label {
+  color: #555555;
+  font-size: 14px;
+  // font-family: 'Abril Fatface', serif;
+  font-weight: 400;
+}
+
+ion-input {
+  --color: #333333;
+  font-size: 16px;
+  --padding-start: 10px;
+  // font-family: 'Abril Fatface', serif;
+}
+
+.error-message {
+  color: #ff4961;
+  font-size: 12px;
+  margin-left: 16px;
+  margin-top: -8px;
+  margin-bottom: 8px;
+  // font-family: 'Abril Fatface', serif;
+}
+
+.error-container {
+  background-color: rgba(255, 73, 97, 0.1);
+  border-radius: 6px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.server-error {
+  color: #ff4961;
+  font-size: 14px;
+  text-align: center;
+  margin: 0;
+  // font-family: 'Abril Fatface', serif;
+}
+
+.button-container {
+  margin: 24px 0;
+}
+
+.login-button {
+  --background: #327c72;
+  --background-activated: #286259;
+  --background-hover: #286259;
+  --border-radius: 8px;
+  --color: white;
+  font-weight: 400;
+  height: 44px;
+  margin: 0;
+  // font-family: 'Abril Fatface', serif;
+  letter-spacing: 0.5px;
+}
+
+.quick-access {
+  margin-top: 30px;
+  border-top: 1px solid #eaeaea;
+  padding-top: 15px;
+}
+
+.quick-access-title {
+  text-align: center;
+  font-size: 16px;
+  color: #777777;
+  margin-bottom: 10px;
+  // font-family: 'Abril Fatface', serif;
+}
+
+.quick-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.quick-button {
+  --color: #327c72;
+  font-size: 14px;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  // font-family: 'Abril Fatface', serif;
+}
+
+// Estilo cuando los botones están deshabilitados
+ion-button[disabled] {
+  opacity: 0.7;
+}
+
+// Aplicación global de la fuente
+// :host ::ng-deep * {
+//   // font-family: 'Abril Fatface', serif;
+// }

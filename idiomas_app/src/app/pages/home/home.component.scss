@@ -1,0 +1,179 @@
+// Importación de la fuente Abril Fatface
+// @import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&display=swap');
+
+.home-container {
+  --background: #327c72;
+  height: 100%;
+  width: 100%;
+  // font-family: 'Abril Fatface', serif;
+  display: flexbox;
+  --justify-content: center; // Centra horizontalmente
+  align-items: flex-start; // Alinea desde arriba
+  padding: 20px 0; // Quitamos padding lateral para evitar desplazamientos
+  overflow-y: auto; // Por si el contenido es muy largo
+}
+
+.main-wrapper {
+  width: 100%;
+  max-width: 800px; // Ancho máximo para todo el contenido
+  padding: 0 20px; // Movemos el padding aquí
+  display: flex;
+  flex-direction: column;
+  align-items: center; // Centrar los elementos dentro del wrapper
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+  width: 100%;
+}
+
+.welcome-title {
+  color: #ffffff;
+  font-size: 32px;
+  margin: 0;
+  // font-family: 'Abril Fatface', serif;
+  letter-spacing: 0.5px;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.logout-button {
+  --background: rgba(255, 255, 255, 0.2);
+  --background-hover: rgba(255, 255, 255, 0.3);
+  --border-radius: 8px;
+  --color: white;
+  // font-family: 'Abril Fatface', serif;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+}
+
+.content-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+}
+
+.home-card {
+  border-radius: 15px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  background-color: #ffffff;
+  margin: 0;
+  width: 100%; // Ocupa todo el ancho disponible en el contenedor
+}
+
+.card-title {
+  color: #327c72;
+  font-size: 24px;
+  font-weight: 400;
+  margin-bottom: 10px;
+  // font-family: 'Abril Fatface', serif;
+  letter-spacing: 0.5px;
+  text-align: center;
+}
+
+.welcome-text {
+  text-align: center;
+  color: #555555;
+  margin-bottom: 24px;
+  // font-family: 'Abril Fatface', serif;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.menu-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.menu-item {
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin: 0;
+  background-color: #f9f9f9;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.1);
+  }
+}
+
+.menu-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 10px;
+}
+
+.menu-icon {
+  font-size: 32px;
+  margin-bottom: 10px;
+}
+
+.menu-title {
+  // font-family: 'Abril Fatface', serif;
+  color: #327c72;
+  font-size: 18px;
+  text-align: center;
+}
+
+.activity-item {
+  display: flex;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid #eaeaea;
+  
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.activity-date {
+  background-color: #327c72;
+  color: white;
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 14px;
+  margin-right: 15px;
+  // font-family: 'Abril Fatface', serif;
+  min-width: 60px;
+  text-align: center;
+}
+
+.activity-description {
+  color: #555555;
+  // font-family: 'Abril Fatface', serif;
+  font-size: 16px;
+}
+
+// Media queries para responsividad
+@media (max-width: 576px) {
+  .menu-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .welcome-title {
+    font-size: 28px;
+  }
+  
+  .card-title {
+    font-size: 22px;
+  }
+}
+
+// Para pantallas muy grandes
+@media (min-width: 1200px) {
+  .main-wrapper {
+    max-width: 900px; // Un poco más ancho en pantallas muy grandes
+  }
+}
+
+// Aplicación global de la fuente
+// :host ::ng-deep * {
+  // font-family: 'Abril Fatface', serif;
+// }

@@ -1,3 +1,34 @@
-<p>
-  login works!
-</p>
+<ion-content [fullscreen]="true" class="login-content">
+  <div class="login-wrapper">
+    <div class="login-box">
+      <h1 class="title">CamaraApp</h1>
+      <p class="subtitle">Iniciá sesión para continuar</p>
+
+      <form [formGroup]="formLogin">
+        <ion-item class="input-item">
+          <ion-label position="floating">Correo</ion-label>
+          <ion-input [(ngModel)]="admin_email" type="email" formControlName="email"></ion-input>
+        </ion-item>
+
+        <ion-item class="input-item">
+          <ion-label position="floating">Contraseña</ion-label>
+          <ion-input [(ngModel)]="admin_password" type="password" formControlName="password"></ion-input>
+        </ion-item>
+
+        <div class="error-msg" *ngIf="errorMessage">
+          {{ errorMessage }}
+        </div>
+
+        <ion-button expand="block" class="login-btn" (click)="login()">Ingresar</ion-button>
+      </form>
+
+      <div class="quick-access">
+        <ion-button fill="outline" (click)="accesoRapido(1)">Acceso 1</ion-button>
+        <ion-button fill="outline" (click)="accesoRapido(2)">Acceso 2</ion-button>
+        <ion-button fill="outline" (click)="accesoRapido(3)">Acceso 3</ion-button>
+      </div>
+
+      <ion-button fill="clear" class="clear-btn" (click)="accesoRapido(0)">Borrar</ion-button>
+    </div>
+  </div>
+</ion-content>

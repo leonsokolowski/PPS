@@ -1,3 +1,63 @@
-<p>
-  login works!
-</p>
+<ion-content class="login-container">
+  <div class="login-form-container">
+    <ion-card class="login-card">
+      <ion-card-header>
+        <ion-card-title class="login-title">Iniciar Sesión</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <form [formGroup]="formLogin" (ngSubmit)="login()">
+          <ion-item class="form-item">
+            <ion-label position="floating" style="color: #286259;">Correo Electrónico</ion-label>
+            <ion-input 
+              type="email" 
+              formControlName="email"
+              [(ngModel)]="admin_email">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="formLogin.get('email')?.invalid && formLogin.get('email')?.touched">
+            <span *ngIf="formLogin.get('email')?.errors?.['required']">El correo es requerido</span>
+            <span *ngIf="formLogin.get('email')?.errors?.['email']">Ingrese un correo válido</span>
+          </div>
+          
+          <ion-item class="form-item">
+            <ion-label position="floating" style="color: #286259;">Contraseña</ion-label>
+            <ion-input 
+              type="password" 
+              formControlName="password"
+              [(ngModel)]="admin_password">
+            </ion-input>
+          </ion-item>
+          <div class="error-message" *ngIf="formLogin.get('password')?.invalid && formLogin.get('password')?.touched">
+            <span *ngIf="formLogin.get('password')?.errors?.['required']">La contraseña es requerida</span>
+            <span *ngIf="formLogin.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres</span>
+          </div>
+          
+          <div class="error-container" *ngIf="errorMessage">
+            <p class="server-error">{{ errorMessage }}</p>
+          </div>
+          
+          <div class="button-container">
+            <ion-button 
+              expand="block" 
+              type="submit" 
+              [disabled]="formLogin.invalid" 
+              class="login-button">
+              Iniciar Sesión
+            </ion-button>
+          </div>
+        </form>
+        
+        <div class="quick-access">
+          <p class="quick-access-title">Acceso Rápido</p>
+          <div class="quick-buttons">
+            <ion-button fill="clear" (click)="accesoRapido(1)" class="quick-button">Admin 1</ion-button>
+            <ion-button fill="clear" (click)="accesoRapido(2)" class="quick-button">Admin 2</ion-button>
+            <ion-button fill="clear" (click)="accesoRapido(3)" class="quick-button">Admin 3</ion-button>
+            <ion-button fill="clear" (click)="accesoRapido(0)" class="quick-button">Limpiar</ion-button>
+          </div>
+        </div>
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>

@@ -1,0 +1,61 @@
+.home-content {
+    --background: #1f6c3f;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  .home-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: 30px 20px;
+  }
+  
+  .home-card {
+    background: #ffffff;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.5s ease;
+  }
+  
+  .home-title {
+    color: #1f6c3f;
+    text-align: center;
+    font-size: 22px;
+    font-weight: 600;
+  }
+  
+  .sub-text {
+    text-align: center;
+    margin-top: 8px;
+    font-size: 15px;
+    color: #555;
+  }
+  
+  .logout-btn {
+    margin-top: 20px;
+    --background: #2ea463;
+    --border-radius: 12px;
+    font-weight: 600;
+  }
+  
+  .logout-btn:hover {
+    --background: #49bf7e;
+  }
+  
+  @keyframes slideIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  

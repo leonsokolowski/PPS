@@ -1,3 +1,44 @@
-<p>
-  login works!
-</p>
+<ion-content [fullscreen]="true" class="ion-padding">
+  <div class="center-container">
+    <ion-card>
+      <ion-card-header>
+        <ion-card-title class="ion-text-center">Iniciar Sesión</ion-card-title>
+      </ion-card-header>
+      
+      <ion-card-content>
+        <form [formGroup]="formLogin">
+          <ion-item>
+            <ion-label position="floating">Correo</ion-label>
+            <ion-input [(ngModel)]="admin_email" type="email" formControlName="email"></ion-input>
+          </ion-item>
+          
+          <ion-item>
+            <ion-label position="floating">Contraseña</ion-label>
+            <ion-input [(ngModel)]="admin_password" type="password" formControlName="password"></ion-input>
+          </ion-item>
+
+          <div class="error-msg" *ngIf="errorMessage">
+            {{ errorMessage }}
+          </div>
+          
+          <div class="ion-padding">
+            <ion-button expand="block" (click)="login()">
+              Ingresar
+            </ion-button>
+          </div>
+
+        </form>
+      </ion-card-content>
+    </ion-card>
+    <div style="margin-top: 10px; display: flex; gap: 10px; justify-content: center;">
+      <ion-button class="custom-button" (click)="accesoRapido(1)">Acceso rápido 1</ion-button>
+      <ion-button class="custom-button" (click)="accesoRapido(2)">Acceso rápido 2</ion-button>
+      <ion-button class="custom-button" (click)="accesoRapido(3)">Acceso rápido 3</ion-button>
+    </div>
+    <div style="margin-top: 10px; display: flex; gap: 10px; justify-content: center;">
+      <ion-button class="custom-button" (click)="accesoRapido(0)">Borrar</ion-button>
+    </div>
+  </div>
+  
+</ion-content>
+
