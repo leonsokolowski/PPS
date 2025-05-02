@@ -1,77 +1,34 @@
-<ion-content class="home-container" style="align-items: center;">
-  <div class="main-wrapper">
-    <div class="header">
-      <h1 class="welcome-title">Bienvenido</h1>
-      <ion-button class="logout-button" (click)="logout()">
-        Cerrar Sesión
-      </ion-button>
-    </div>
+<ion-content class="ion-padding" fullscreen>
 
-    <div class="content-container">
-      <ion-card class="home-card">
-        <ion-card-header>
-          <ion-card-title class="card-title">Panel de Control</ion-card-title>
-        </ion-card-header>
-        
-        <ion-card-content>
-          <p class="welcome-text">
-            Has iniciado sesión correctamente. Este es el panel de administración donde podrás gestionar la aplicación.
-          </p>
-          
-          <div class="menu-grid">
-            <ion-card class="menu-item">
-              <ion-card-content class="menu-content">
-                <div class="menu-icon">📊</div>
-                <div class="menu-title">Estadísticas</div>
-              </ion-card-content>
-            </ion-card>
-            
-            <ion-card class="menu-item">
-              <ion-card-content class="menu-content">
-                <div class="menu-icon">👤</div>
-                <div class="menu-title">Usuarios</div>
-              </ion-card-content>
-            </ion-card>
-            
-            <ion-card class="menu-item">
-              <ion-card-content class="menu-content">
-                <div class="menu-icon">⚙️</div>
-                <div class="menu-title">Configuración</div>
-              </ion-card-content>
-            </ion-card>
-            
-            <ion-card class="menu-item">
-              <ion-card-content class="menu-content">
-                <div class="menu-icon">📝</div>
-                <div class="menu-title">Reportes</div>
-              </ion-card-content>
-            </ion-card>
-          </div>
-        </ion-card-content>
-      </ion-card>
-      
-      <ion-card class="home-card">
-        <ion-card-header>
-          <ion-card-title class="card-title">Actividad Reciente</ion-card-title>
-        </ion-card-header>
-        
-        <ion-card-content>
-          <div class="activity-item">
-            <div class="activity-date">25 Abr</div>
-            <div class="activity-description">Inicio de sesión exitoso</div>
-          </div>
-          
-          <div class="activity-item">
-            <div class="activity-date">24 Abr</div>
-            <div class="activity-description">Actualización de sistema</div>
-          </div>
-          
-          <div class="activity-item">
-            <div class="activity-date">23 Abr</div>
-            <div class="activity-description">Mantenimiento programado</div>
-          </div>
-        </ion-card-content>
-      </ion-card>
-    </div>
+  <!-- Botones flotantes de IDIOMAS -->
+  <div class="floating-buttons top-right">
+    <button class="lang-button" (click)="cambiarIdioma('es')">
+      <img src="assets/home/es.png" alt="Español">
+    </button>
+    <button class="lang-button" (click)="cambiarIdioma('en')">
+      <img src="assets/home/en.png" alt="Inglés">
+    </button>
+    <button class="lang-button" (click)="cambiarIdioma('pt')">
+      <img src="assets/home/pt.png" alt="Portugués">
+    </button>
   </div>
+
+  <!-- Botones flotantes de TEMAS -->
+  <div class="floating-buttons bottom-left">
+    <button class="tema-button" (click)="cambiarTema('colores')">
+      <img src="assets/home/colores.png" alt="Colores">
+    </button>
+    <button class="tema-button" (click)="cambiarTema('numeros')">
+      <img src="assets/home/numeros.png" alt="Números">
+    </button>
+    <button class="tema-button" (click)="cambiarTema('animales')">
+      <img src="assets/home/animales.png" alt="Animales">
+    </button>
+  </div>
+
+  <!-- Botón de logout centrado -->
+  <button class="logout-button" (click)="logout()">
+    <img src="assets/home/logout.png" alt="Logout">
+  </button>
+
 </ion-content>
