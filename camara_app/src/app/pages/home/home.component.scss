@@ -1,58 +1,84 @@
-.home-content {
-    --background: #ffe09e;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Quicksand', sans-serif;
+ion-content {
+  --background: #ffe09e; /* Fondo general detrás de los botones */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: space-between;
+  position: relative;
+}
+
+.big-button {
+  width: 100%;
+  height: 50%;
+  border: 3px solid white; /* Borde blanco agregado */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  color: #333;
+  font-weight: bold;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  img {
+    width: 60%;
+    height: auto;
+    max-height: 60%;
+    object-fit: contain;
   }
-  
-  .center-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+
+  span {
+    margin-top: 10px;
+    font-size: 1.2rem;
+    font-weight: bold;
   }
-  
-  .home-card {
-    background: #fff;
-    width: 90%;
-    max-width: 400px;
-    border-radius: 20px;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.12);
-    animation: fadeIn 0.6s ease-out;
+}
+
+.big-button.top {
+  background-color: #d4f4dd;
+}
+.big-button.top:hover {
+  background-color: #a8e6b1;
+  transform: scale(1.02);
+}
+
+.big-button.bottom {
+  background-color: #fddddd;
+}
+.big-button.bottom:hover {
+  background-color: #f5aaaa;
+  transform: scale(1.02);
+}
+
+.logout-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #ffac68;
+  border: 3px solid white;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+
+  img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    // filter: invert(1);
   }
-  
-  .welcome-text {
-    text-align: center;
-    font-size: 22px;
-    color: #ff8622;
-    font-weight: 600;
-    margin-top: 12px;
-  }
-  
-  .button-wrapper {
-    margin-top: 20px;
-  }
-  
-  .logout-btn {
-    --background: #ffac68;
-    --border-radius: 12px;
-    font-weight: 600;
-    font-size: 16px;
-    transition: background 0.3s ease;
-  }
-  
-  .logout-btn:hover {
-    --background: #ff8622;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform: translateY(20px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+}
+
+.logout-button:hover {
+  background-color: #ff8622;
+  transform: translate(-50%, -50%) scale(1.1);
+}

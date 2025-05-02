@@ -1,19 +1,22 @@
-<ion-content [fullscreen]="true" class="home-content">
-  <div class="center-container">
-    <ion-card class="home-card">
-      <ion-card-header>
-        <ion-card-title class="welcome-text">
-          Bienvenido {{ auth.usuario_actual?.email }}
-        </ion-card-title>
-      </ion-card-header>
+<ion-content class="ion-padding" fullscreen>
+  <div class="container">
 
-      <ion-card-content>
-        <div class="button-wrapper">
-          <ion-button expand="block" class="logout-btn" (click)="logout()">
-            Cerrar Sesión
-          </ion-button>
-        </div>
-      </ion-card-content>
-    </ion-card>
+    <!-- Botón 1 - Cosas LINDAS -->
+    <button class="big-button top">
+      <img src="assets/home/lindo.png" alt="Lindo">
+      <span>Cosas LINDAS del edificio</span>
+    </button>
+
+    <!-- Botón logout -->
+    <button class="logout-button" (click)="logout()">
+      <img src="assets/home/logout.png" alt="Cerrar sesión" />
+    </button>
+
+    <!-- Botón 2 - Cosas FEAS -->
+    <button class="big-button bottom">
+      <img src="assets/home/feo.png" alt="Feo">
+      <span>Cosas FEAS del edificio</span>
+    </button>
+
   </div>
 </ion-content>
