@@ -1,87 +1,27 @@
-<ion-content class="home-container">
-  <div class="header-area">
-    <div class="header-content">
-      <div class="welcome-section">
-        <h1 class="welcome-title">Bienvenido de vuelta</h1>
-        <p class="welcome-subtitle">Panel de administración</p>
-      </div>
-      
-      <ion-button class="logout-button" (click)="logout()">
-        <span class="logout-text">Salir</span>
-        <span class="logout-icon">🚪</span>
-      </ion-button>
-    </div>
+<ion-content class="ion-padding fondo">
+  <div class="titulo-principal">
+    <h2>🧠 Bienvenido a Memotest App 🧠</h2>
   </div>
-  
-  <div class="main-content">
-    <div class="dashboard-cards">
-      <div class="dashboard-card">
-        <div class="card-icon">📊</div>
-        <div class="card-info">
-          <h3 class="card-title">Estadísticas</h3>
-          <p class="card-description">Visualiza datos y métricas</p>
-        </div>
-        <div class="card-action">→</div>
-      </div>
-      
-      <div class="dashboard-card">
-        <div class="card-icon">👥</div>
-        <div class="card-info">
-          <h3 class="card-title">Usuarios</h3>
-          <p class="card-description">Gestión de cuentas</p>
-        </div>
-        <div class="card-action">→</div>
-      </div>
-      
-      <div class="dashboard-card">
-        <div class="card-icon">📝</div>
-        <div class="card-info">
-          <h3 class="card-title">Reportes</h3>
-          <p class="card-description">Informes y análisis</p>
-        </div>
-        <div class="card-action">→</div>
-      </div>
-      
-      <div class="dashboard-card">
-        <div class="card-icon">⚙️</div>
-        <div class="card-info">
-          <h3 class="card-title">Configuración</h3>
-          <p class="card-description">Preferencias del sistema</p>
-        </div>
-        <div class="card-action">→</div>
-      </div>
-    </div>
-    
-    <div class="activity-section">
-      <div class="section-header">
-        <h2 class="section-title">Actividad Reciente</h2>
-        <span class="section-action">Ver todo</span>
-      </div>
-      
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-point"></div>
-          <div class="timeline-content">
-            <div class="timeline-time">Hoy, 10:25 AM</div>
-            <div class="timeline-detail">Inicio de sesión exitoso</div>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-point"></div>
-          <div class="timeline-content">
-            <div class="timeline-time">Ayer, 3:45 PM</div>
-            <div class="timeline-detail">Actualización de sistema completada</div>
-          </div>
-        </div>
-        
-        <div class="timeline-item">
-          <div class="timeline-point"></div>
-          <div class="timeline-content">
-            <div class="timeline-time">23 Abr, 9:30 AM</div>
-            <div class="timeline-detail">Mantenimiento programado</div>
-          </div>
-        </div>
+
+  <div class="card-container">
+    <div class="card">
+      <h1>Selecciona el nivel de dificultad:</h1>
+
+      <div class="buttons">
+        <button class="nivel-btn">
+          <img src="assets/home/animales.png" alt="Animales" />
+          <span>Fácil - 3 pares de animales</span>
+        </button>
+
+        <button class="nivel-btn">
+          <img src="assets/home/herramientas.png" alt="Herramientas" />
+          <span>Medio - 5 pares de herramientas</span>
+        </button>
+
+        <button class="nivel-btn">
+          <img src="assets/home/frutas.png" alt="Frutas" />
+          <span>Difícil - 8 pares de frutas</span>
+        </button>
       </div>
     </div>
   </div>

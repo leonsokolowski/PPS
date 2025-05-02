@@ -1,19 +1,18 @@
-<ion-content [fullscreen]="true" class="ion-padding">
-  <div class="center-container">
-    <ion-card>
-      <ion-card-header>
-        <ion-card-title class="ion-text-center">Bienvenido {{auth.usuario_actual?.email}}</ion-card-title>
-      </ion-card-header>
-      <ion-card-content>
-          <div class="ion-padding">
-            <ion-button expand="block" (click)="logout()">
-              Cerrar Sesión
-            </ion-button>
-          </div>
-      </ion-card-content>
-    </ion-card>
+<ion-content>
+  <div class="container">
+    <button 
+      class="alarm-button" 
+      [class.active]="activo"
+      [class.off]="!activo"
+      (click)="toggleAlarma()"
+    >
+    <div class="alarm-text" *ngIf="activo">ALARMA ACTIVADA - ALARMA ACTIVADA</div> <!-- Texto que aparece cuando 'activo' es true -->
+    <div class="alarm-text" *ngIf="!activo">ALARMA DESACTIVADA - ALARMA DESACTIVADA</div> <!-- Texto que aparece cuando 'activo' es true -->
+    <img src="assets/home/icono.png" alt="Alarma" />
+    </button>
+
+    <button class="logout-button" (click)="logout()">
+      <img src="assets/home/logout.png" alt="Logout">
+    </button>
   </div>
-  
 </ion-content>
-
-

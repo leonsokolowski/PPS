@@ -1,99 +1,86 @@
-ion-content {
-    --background: #780902;
-  
-    display: flex;
-    justify-content: center;
-    align-items: center;
+/* Botón principal */
+.alarm-button {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: #a40c03;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Ocultamos el texto que se desborda */
+  transition: background-color 0.3s ease; /* Solo cambio de color */
+}
 
-    --padding-top: 0;
-    --padding-bottom: 0;
-  }
+.alarm-button.active {
+  background-color: #c9140a; /* Color cuando está activo */
+}
 
-  .center-container {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; // ocupa toda la altura de la pantalla
-    width: 100%;
-  }
-  .register-link
-  {
-    display: flex;
-    justify-content: center;
-    text-decoration: none;
-    font-size: 0.95rem;
-    transition: color 0.2s ease;
-    cursor: pointer;
-  }
+.alarm-button img {
+  width: 200px;
+  height: auto;
+  object-fit: contain;
+  transition: filter 0.3s ease; /* Transición solo para el filtro */
+}
 
-  .register-link:hover
-  {
-    color: #ff8622;
-    text-decoration: underline;
-  }
+.alarm-button.active img {
+  filter: grayscale(0%); /* Icono en color cuando está activo */
+}
 
-  .error-msg {
-    color: #f44336; // rojo
-    margin-top: 10px;
-    margin-bottom: -10px;
-    text-align: center;
-    font-weight: bold;
-  }
-  
-  ion-card {
-    width: 100%;
-    max-width: 400px;
-    padding: 10px;
-    margin-top: 20px;
-    border-radius: 10px;
-    background: #1e1e1e;
-    color: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    animation: fadeInUp 0.6s ease-out;
-  }
-  
-  ion-card-title {
-    font-size: 24px;
-    font-weight: bold;
-  }
-  
-  ion-button {
-    margin-top: 20px;
-    --background: #f34236;
-  }
-  ion-button:hover{
-    --background: #bb332a;
-  }
-  
-  ion-item {
-    --highlight-height: 2px;
-    --highlight-color-focused: var(--ion-color-primary);
-    --highlight-color-valid: var(--ion-color-primary);
-    --highlight-color-invalid: var(--ion-color-danger);
-  }
-  
-  ion-label[position="floating"] {
-    transition: all 0.15s ease-in-out;
-  }
-  
-  ion-item.item-has-focus ion-label[position="floating"],
-  ion-item.item-has-value ion-label[position="floating"] {
-    transform: translateY(-4px) scale(0.85);
-  }
-  
-  ion-item:not(.item-has-focus):not(.item-has-value) ion-label[position="floating"] {
-    transform: translateY(0) scale(1);
-  }
-  
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(30px);
-    }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
+.alarm-button.off img {
+  filter: grayscale(100%); /* Icono en escala de grises cuando está desactivado */
+}
 
+/* Texto que aparece detrás del icono */
+.alarm-text {
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  transform: translateY(-50%);
+  white-space: nowrap; /* Evita el salto de línea */
+  font-size: 30px;
+  color: #fff;
+  font-weight: bold;
+  animation: moveText 10s linear infinite; /* Animación de movimiento */
+}
+
+@keyframes moveText {
+  0% {
+    left: 100%; /* Comienza fuera de la pantalla, a la derecha */
+  }
+  100% {
+    left: -100%; /* Termina fuera de la pantalla, a la izquierda */
+  }
+}
+
+/* Botón de logout */
+.logout-button {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: #a40c03;
+  border: 3px solid white;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #c9140a;
+  transform: scale(1.1);
+}
+
+.logout-button img {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+  filter: invert(1);
+}
