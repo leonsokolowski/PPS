@@ -3,23 +3,43 @@ ion-content {
   position: relative;
 }
 
-/* Botones flotantes generales */
+/* Estilo compartido para los dos labels */
+.label-container {
+  margin: 20px auto;
+  padding: 18px 30px;
+  background-color: #ffffffcc;
+  border-radius: 12px;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+  width: fit-content;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Ajuste especial para el label superior */
+.idioma-actual {
+  margin-top: 30px;
+  margin-bottom: 10px;
+}
+
+/* Botones flotantes */
 .floating-buttons {
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 12px;
   z-index: 10;
 }
 
 .top-right {
-  top: 20px;
-  right: 20px;
+  top: 30px;
+  right: 30px;
 }
 
 .bottom-left {
-  bottom: 20px;
-  left: 20px;
+  bottom: 30px;
+  left: 30px;
 }
 
 .lang-button,
@@ -27,10 +47,10 @@ ion-content {
   background-color: white;
   border: none;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
-  padding: 5px;
+  width: 80px;
+  height: 80px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+  padding: 8px;
   transition: transform 0.2s ease;
 
   img {
@@ -45,16 +65,16 @@ ion-content {
   }
 }
 
-/* Botón de logout centrado */
+/* Botón logout */
 .logout-button {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  background-color: #d4f4dd; /* Igual que botón "LINDO" */
+  top: 30px;
+  left: 30px;
+  background-color: #d4f4dd;
   border: 3px solid white;
-  border-radius: 12px; /* Igual que botones principales */
-  width: 60px;
-  height: 60px;
+  border-radius: 12px;
+  width: 80px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -63,15 +83,53 @@ ion-content {
   transition: background-color 0.3s ease, transform 0.3s ease;
 
   img {
-    width: 30px;
-    height: 30px;
+    width: 40px;
+    height: 40px;
     object-fit: contain;
     filter: invert(1);
   }
 
   &:hover {
-    background-color: #a8e6b1; /* hover más intenso */
+    background-color: #a8e6b1;
     transform: scale(1.1);
   }
 }
 
+/* Grilla */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 30px;
+  justify-items: center;
+  align-items: center;
+  background-color: #f8f8f8;
+  padding: 30px;
+  margin: 0 auto 30px auto;
+  width: fit-content;
+  border-radius: 16px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+}
+
+.grid-button {
+  width: 120px;
+  height: 120px;
+  background-color: white;
+  border: none;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}

@@ -4,6 +4,7 @@ import {FormBuilder, FormControl, FormGroup, FormsModule, Validators, ReactiveFo
 import { IonContent, IonHeader, IonTitle, IonToolbar, IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle} from '@ionic/angular/standalone';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
+import { IonText } from '@ionic/angular';
 
 @Component({
   selector: 'app-home',
@@ -14,6 +15,9 @@ import { AuthService } from '../../services/auth.service';
 })
 export class HomeComponent implements OnInit {
   auth = inject(AuthService);
+  creditos: number = 0;
+  mensaje: string = '';
+  billetes = Array(10);
   constructor() { }
 
   logout()
@@ -23,4 +27,20 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
   }
 
+  
+  escanearQR() {
+    // Usar Capacitor BarcodeScanner o Ionic Native QRScanner
+    // Simular QR leído: const codigo = 'ABC123';
+    // Consultar si el código existe en la base y si ya fue cargado por el usuario.
+    // Según perfil y repeticiones, permitir o no acumular créditos.
+    // Actualizar `mensaje` y `creditos`
+  }
+
+  limpiarCreditos() {
+    // Llamar a backend para borrar los créditos del usuario.
+    // Reiniciar creditos y mostrar mensaje.
+  }
+
 }
+
+

@@ -1,18 +1,31 @@
-<ion-content [fullscreen]="true" class="home-content">
-  <div class="home-wrapper">
-    <ion-card class="home-card">
+<ion-content class="ion-padding">
+  <div class="lluvia-billetes">
+    <img *ngFor="let n of billetes" src="assets/home/billete.png" class="billete" />
+  </div>
+
+  <div class="home-container">
+    <h1>Bienvenido, {{ auth.usuario_actual?.email }}</h1>
+
+    <ion-card>
       <ion-card-header>
-        <ion-card-title class="home-title">
-          ¡Hola, {{ auth.usuario_actual?.email }}!
-        </ion-card-title>
+        <ion-card-title>Créditos Acumulados</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <p class="sub-text">Gracias por usar Crédito App.</p>
-
-        <ion-button expand="block" class="logout-btn" (click)="logout()">
-          Cerrar Sesión
-        </ion-button>
+        <h2>{{ creditos }}</h2>
       </ion-card-content>
     </ion-card>
+
+    <ion-button color="success-custom" expand="block" (click)="escanearQR()">Escanear QR</ion-button>
+
+    <ion-button expand="block" color="danger-custom" (click)="limpiarCreditos()">
+      Limpiar Créditos
+    </ion-button>
+
+    <ion-button color="medium" expand="block" (click)="logout()">Cerrar sesión</ion-button>
+
+    <div color="medium">
+      <p>{{ mensaje }}</p>
+    </div>
+
   </div>
 </ion-content>

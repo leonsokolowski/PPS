@@ -1,61 +1,146 @@
-.home-content {
-    --background: #1f6c3f;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-family: 'Poppins', sans-serif;
+/* Estilo general del fondo */
+ion-content {
+  --background: #1f6c3f; /* Fondo verde */
+  color: white;
+}
+
+/* Contenedor principal */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: start;
+  height: 100%;
+  padding-top: 40px;
+  position: relative; /* Para asegurar que el contenido esté por encima de los billetes */
+}
+
+/* Estilo del título de bienvenida */
+.home-container h1 {
+  font-size: 2rem; /* Ajustado tamaño */
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #ffffff;
+  text-align: center;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Sombra para destacar */
+  z-index: 2; /* Colocamos por encima de los billetes */
+}
+
+/* Estilo del ion-card */
+ion-card {
+  width: 90%;
+  background: #2e8b57;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  color: white;
+  z-index: 2; /* Por encima de los billetes */
+}
+
+/* Estilo del título del card */
+ion-card-title {
+  font-size: 1.4rem;
+  color: #e0ffe5;
+}
+
+/* Estilo del contenido del card */
+ion-card-content h2 {
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin: 10px 0;
+}
+
+/* Estilo de los botones */
+ion-button {
+  width: 90%;
+  margin-top: 12px;
+  font-weight: 600;
+  font-size: 1rem;
+  border-radius: 12px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Estilo del botón Escanear QR */
+ion-button[color="success-custom"] {
+  background: #28a745; /* Verde moderno */
+  color: #fff;
+}
+ion-button[color="success-custom"]:hover {
+  background: #218838;
+  color: #fff;
+}
+ion-button[color="success-custom"]:active {
+  background: #1e7e34;
+  color: #fff;
+}
+
+/* Estilo del botón Limpiar Créditos */
+ion-button[color="danger-custom"] {
+  background: #b8860b;   /* Dorado oscuro */
+  color: #ffffff;
+}
+ion-button[color="danger-custom"]:hover{
+  background: #d4af37;   /* Dorado oscuro */
+  color: #ffffff;
+}
+ion-button[color="danger-custom"]:active{
+  background: #8b7500;   /* Dorado oscuro */
+  color: #ffffff;
+}
+
+/* Estilo del texto del mensaje */
+ion-text p {
+  margin-top: 20px;
+  font-size: 1rem;
+  color: #f8f8f8;
+  padding: 0 15px;
+  text-align: center;
+}
+
+/* Contenedor de billetes */
+.lluvia-billetes {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Para no bloquear los clics */
+  z-index: 0; /* Los billetes van detrás del contenido */
+  overflow: hidden;
+}
+
+/* Cada billete animado */
+.billete {
+  position: absolute;
+  width: 80px; /* Aumento de tamaño */
+  animation: caer linear infinite;
+  opacity: 0.8;
+  top: -100px; /* Inicia fuera de la pantalla */
+  z-index: 0; /* Los billetes van atrás del contenido */
+}
+
+/* Animación de caída de los billetes */
+@keyframes caer {
+  0% {
+    transform: translateY(-100px) rotate(0deg);
+    opacity: 0;
   }
-  
-  .home-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    padding: 30px 20px;
+  30% {
+    opacity: 0.8;
   }
-  
-  .home-card {
-    background: #ffffff;
-    border-radius: 20px;
-    width: 100%;
-    max-width: 400px;
-    padding: 20px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-    animation: slideIn 0.5s ease;
+  100% {
+    transform: translateY(110vh) rotate(360deg);
+    opacity: 0;
   }
-  
-  .home-title {
-    color: #1f6c3f;
-    text-align: center;
-    font-size: 22px;
-    font-weight: 600;
-  }
-  
-  .sub-text {
-    text-align: center;
-    margin-top: 8px;
-    font-size: 15px;
-    color: #555;
-  }
-  
-  .logout-btn {
-    margin-top: 20px;
-    --background: #2ea463;
-    --border-radius: 12px;
-    font-weight: 600;
-  }
-  
-  .logout-btn:hover {
-    --background: #49bf7e;
-  }
-  
-  @keyframes slideIn {
-    from {
-      opacity: 0;
-      transform: translateY(10px);
-    }
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
-  }
-  
+}
+
+/* Posiciones aleatorias y duración dinámica para los billetes */
+.billete:nth-child(1)  { left: 5%; animation-duration: 6s; animation-delay: 0s; }
+.billete:nth-child(2)  { left: 15%; animation-duration: 8s; animation-delay: 1s; }
+.billete:nth-child(3)  { left: 25%; animation-duration: 7s; animation-delay: 2s; }
+.billete:nth-child(4)  { left: 35%; animation-duration: 9s; animation-delay: 0.5s; }
+.billete:nth-child(5)  { left: 45%; animation-duration: 6.5s; animation-delay: 1.5s; }
+.billete:nth-child(6)  { left: 55%; animation-duration: 7.2s; animation-delay: 0.3s; }
+.billete:nth-child(7)  { left: 65%; animation-duration: 10s; animation-delay: 1s; }
+.billete:nth-child(8)  { left: 75%; animation-duration: 5.5s; animation-delay: 2.2s; }
+.billete:nth-child(9)  { left: 85%; animation-duration: 8.2s; animation-delay: 1.8s; }
+.billete:nth-child(10) { left: 95%; animation-duration: 6.8s; animation-delay: 0.6s; }

@@ -1,4 +1,8 @@
 <ion-content class="ion-padding" fullscreen>
+  <!-- Botón de logout -->
+  <button class="logout-button" (click)="logout()">
+    <img src="assets/home/logout.png" alt="Logout">
+  </button>
 
   <!-- Botones flotantes de IDIOMAS -->
   <div class="floating-buttons top-right">
@@ -26,9 +30,20 @@
     </button>
   </div>
 
-  <!-- Botón de logout centrado -->
-  <button class="logout-button" (click)="logout()">
-    <img src="assets/home/logout.png" alt="Logout">
-  </button>
+  <!-- Label para mostrar el idioma actual -->
+  <div class="label-container idioma-actual">
+    Idioma actual: {{ idioma === 'es' ? 'Español' : idioma === 'en' ? 'Inglés' : 'Portugués' }}
+  </div>
 
+  <!-- Grilla de botones -->
+  <div class="grid-container">
+    <button *ngFor="let boton of grillaActual" (click)="mostrarPalabra(boton)" class="grid-button">
+      <img [src]="boton.imagen" alt="{{ boton.nombre }}">
+    </button>
+  </div>
+
+  <!-- Label donde se muestra la palabra seleccionada -->
+  <div *ngIf="palabraMostrada" class="label-container">
+    {{ palabraMostrada }}
+  </div>
 </ion-content>
