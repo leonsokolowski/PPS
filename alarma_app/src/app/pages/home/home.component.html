@@ -8,7 +8,8 @@
     >
     <div class="alarm-text" *ngIf="activo">ALARMA ACTIVADA - ALARMA ACTIVADA</div> <!-- Texto que aparece cuando 'activo' es true -->
     <div class="alarm-text" *ngIf="!activo">ALARMA DESACTIVADA - ALARMA DESACTIVADA</div> <!-- Texto que aparece cuando 'activo' es true -->
-    <img src="assets/home/icono.png" alt="Alarma" />
+    <img *ngIf="activo" src="assets/home/icono.png" alt="Alarma" />
+    <img *ngIf="!activo" src="assets/home/icono_apagado.png" alt="Alarma" />
     </button>
 
     <button class="logout-button" (click)="logout()">

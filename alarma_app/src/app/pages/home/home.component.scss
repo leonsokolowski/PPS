@@ -19,7 +19,7 @@
 }
 
 .alarm-button img {
-  width: 200px;
+  width: 450px;
   height: auto;
   object-fit: contain;
   transition: filter 0.3s ease; /* Transición solo para el filtro */
@@ -40,7 +40,7 @@
   left: 100%;
   transform: translateY(-50%);
   white-space: nowrap; /* Evita el salto de línea */
-  font-size: 30px;
+  font-size: 50px;
   color: #fff;
   font-weight: bold;
   animation: moveText 10s linear infinite; /* Animación de movimiento */
