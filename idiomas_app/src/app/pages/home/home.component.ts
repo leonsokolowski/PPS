@@ -9,15 +9,15 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
   standalone: true,
-  imports: [IonButton, CommonModule, FormsModule, ReactiveFormsModule, IonContent]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, IonContent]
 })
 export class HomeComponent implements OnInit {
   auth = inject(AuthService);
 
   idioma: string = 'es';
   tema: string = 'colores';
-  palabraMostrada: string = '';
   grillaActual: any[] = [];
+  audioPlayer: HTMLAudioElement = new Audio();
 
   temas: any = {
     colores: [
@@ -40,9 +40,9 @@ export class HomeComponent implements OnInit {
       { imagen: 'assets/home/perro.png', traducciones: { es: 'Perro', en: 'Dog', pt: 'Cachorro' } },
       { imagen: 'assets/home/gato.png', traducciones: { es: 'Gato', en: 'Cat', pt: 'Gato' } },
       { imagen: 'assets/home/vaca.png', traducciones: { es: 'Vaca', en: 'Cow', pt: 'Vaca' } },
-      { imagen: 'assets/home/pato.png', traducciones: { es: 'Pato', en: 'Duck', pt: 'Pato' } },
-      { imagen: 'assets/home/caballo.png', traducciones: { es: 'Caballo', en: 'Horse', pt: 'Cavalo' } },
-      { imagen: 'assets/home/oveja.png', traducciones: { es: 'Oveja', en: 'Sheep', pt: 'Ovelha' } }
+      { imagen: 'assets/home/leon.png', traducciones: { es: 'Pato', en: 'Duck', pt: 'Pato' } },
+      { imagen: 'assets/home/elefante.png', traducciones: { es: 'Caballo', en: 'Horse', pt: 'Cavalo' } },
+      { imagen: 'assets/home/mono.png', traducciones: { es: 'Oveja', en: 'Sheep', pt: 'Ovelha' } }
     ]
   };
 
@@ -58,39 +58,31 @@ export class HomeComponent implements OnInit {
 
   cambiarIdioma(idioma: string) {
     this.idioma = idioma;
-    let idiomaNombre: string = '';
-    this.palabraMostrada = '';
-    
-    switch(idioma) {
-      case 'es':
-        idiomaNombre = 'Español';
-        break;
-      case 'en':
-        idiomaNombre = 'Inglés';
-        break;
-      case 'pt':
-        idiomaNombre = 'Portugués';
-        break;
-      default:
-        idiomaNombre = 'Idioma no reconocido';
-    }
-  
-    console.log(`Idioma cambiado a: ${idiomaNombre}`);
   }
-  
 
   cambiarTema(tema: string) {
     this.tema = tema;
     this.actualizarGrilla();
-    this.palabraMostrada = '';
-    console.log(`Tema cambiado a: ${tema}`);
   }
 
   actualizarGrilla() {
     this.grillaActual = this.temas[this.tema];
   }
 
-  mostrarPalabra(item: any) {
-    this.palabraMostrada = item.traducciones[this.idioma];
+  reproducirSonido(item: any) {
+    const palabra = item.traducciones[this.idioma].toLowerCase();
+    const rutaAudio = `assets/sounds/${this.idioma}/${this.tema}/${palabra}.mp3`;
+    
+    // Detener cualquier reproducción anterior
+    this.audioPlayer.pause();
+    this.audioPlayer.currentTime = 0;
+    
+    // Configurar la nueva fuente de audio
+    this.audioPlayer.src = rutaAudio;
+    
+    // Reproducir el sonido
+    this.audioPlayer.play().catch(error => {
+      console.error('Error al reproducir el audio:', error);
+    });
   }
 }

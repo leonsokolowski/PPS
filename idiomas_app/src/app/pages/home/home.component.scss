@@ -1,45 +1,26 @@
 ion-content {
   --background: #327c72;
   position: relative;
-}
-
-/* Estilo compartido para los dos labels */
-.label-container {
-  margin: 20px auto;
-  padding: 18px 30px;
-  background-color: #ffffffcc;
-  border-radius: 12px;
-  font-size: 1.5rem;
-  font-weight: bold;
-  text-align: center;
-  color: #333;
-  width: fit-content;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-/* Ajuste especial para el label superior */
-.idioma-actual {
-  margin-top: 30px;
-  margin-bottom: 10px;
-}
-
-/* Botones flotantes */
-.floating-buttons {
-  position: absolute;
   display: flex;
   flex-direction: column;
+  height: 100%;
+}
+
+/* Estructura general de controles superiores */
+.header-controls {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 20px 0;
+}
+
+/* Botones de idioma */
+.language-buttons {
+  margin-top: -2%;
+  display: flex;
   gap: 12px;
-  z-index: 10;
-}
-
-.top-right {
-  top: 30px;
-  right: 30px;
-}
-
-.bottom-left {
-  bottom: 30px;
-  left: 30px;
+  margin-right: 20px;
 }
 
 .lang-button,
@@ -47,8 +28,8 @@ ion-content {
   background-color: white;
   border: none;
   border-radius: 50%;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
   padding: 8px;
   transition: transform 0.2s ease;
@@ -60,25 +41,23 @@ ion-content {
     border-radius: 50%;
   }
 
-  &:hover {
+  &:hover, &:active {
     transform: scale(1.1);
   }
 }
 
 /* Botón logout */
 .logout-button {
-  position: absolute;
-  top: 30px;
-  left: 30px;
+  margin-top: -2%;
   background-color: #d4f4dd;
   border: 3px solid white;
   border-radius: 12px;
-  width: 80px;
-  height: 80px;
+  width: 70px;
+  height: 70px;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 20;
+  margin-left: 20px;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
   transition: background-color 0.3s ease, transform 0.3s ease;
 
@@ -89,30 +68,41 @@ ion-content {
     filter: invert(1);
   }
 
-  &:hover {
+  &:hover, &:active {
     background-color: #a8e6b1;
     transform: scale(1.1);
   }
 }
 
-/* Grilla */
+/* Contenedor principal para centrar la grilla */
+.main-content {
+  display: flex;
+  margin-top: -1%;
+  justify-content: center;
+  align-items: center;
+  flex: 1;
+  padding: 10px 0px -100px -100px;
+}
+
+/* Grilla - formato 2x3 optimizado */
 .grid-container {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 24px 30px;
-  justify-items: center;
-  align-items: center;
+  grid-template-columns: repeat(2, minmax(120px, 1fr)); /* 2 columnas con tamaño mínimo */
+  grid-auto-rows: minmax(120px, auto); /* Altura mínima de filas */
+  gap: 15px;
+  justify-content: center;
   background-color: #f8f8f8;
-  padding: 30px;
-  margin: 0 auto 30px auto;
-  width: fit-content;
+  padding: 15px;
+  margin: 10px auto;
+  max-width: 90%;
   border-radius: 16px;
   box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
 }
 
 .grid-button {
-  width: 120px;
-  height: 120px;
+  width: 100%;
+  min-height: 120px;
+  max-height: 150px;
   background-color: white;
   border: none;
   border-radius: 16px;
@@ -122,14 +112,49 @@ ion-content {
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease;
+  margin: 0;
 
   img {
-    width: 100%;
-    height: 100%;
+    width: 85%;
+    height: 85%;
     object-fit: contain;
   }
 
-  &:hover {
-    transform: scale(1.1);
+  &:hover, &:active {
+    transform: scale(1.05);
+  }
+}
+
+/* Controles de temas inferiores */
+.theme-controls {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  // margin: 20px 0;
+}
+
+/* Media queries para asegurar responsividad */
+@media (max-height: 700px) {
+  .grid-container {
+    /* Quitamos la altura fija para permitir que la grilla se ajuste naturalmente */
+    max-height: none;
+    padding: 10px;
+  }
+  
+  .lang-button, .tema-button, .logout-button {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .grid-container {
+    gap: 12px;
+    padding: 12px;
+  }
+  
+  .lang-button, .tema-button, .logout-button {
+    width: 55px;
+    height: 55px;
   }
 }
