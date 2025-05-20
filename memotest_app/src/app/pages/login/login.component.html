@@ -1,72 +1,82 @@
-<ion-content class="login-container">
-  <div class="wave-background"></div>
-  
-  <div class="login-form-wrapper">
-    <div class="logo-container">
-      <div class="app-logo">
-        <div class="logo-circle"></div>
-        <h1 class="app-name">Memotest<span>App</span></h1>
+<ion-content fullscreen="true">
+  <div class="login-container">
+    <div class="form-card">
+      <div class="header">
+        <div class="logo">
+          <ion-icon name="lock-closed-outline"></ion-icon>
+        </div>
+        <h2>Iniciar Sesión</h2>
+      </div>
+
+      <div class="form-container">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
+          <div class="form-field">
+            <ion-label>Email</ion-label>
+            <ion-item lines="none">
+              <ion-icon name="mail-outline" slot="start"></ion-icon>
+              <ion-input type="email" formControlName="email" inputmode="email"></ion-input>
+            </ion-item>
+            <div class="error-message" *ngIf="emailControl?.invalid && emailControl?.touched">
+              <span *ngIf="emailControl?.errors?.['required']">El correo electrónico es obligatorio.</span>
+              <span *ngIf="emailControl?.errors?.['email']">Ingrese un correo válido.</span>
+            </div>
+          </div>
+
+          <div class="form-field">
+            <ion-label>Contraseña</ion-label>
+            <ion-item lines="none">
+              <ion-icon name="key-outline" slot="start"></ion-icon>
+              <ion-input type="password" formControlName="password"></ion-input>
+            </ion-item>
+            <div class="error-message" *ngIf="passwordControl?.invalid && passwordControl?.touched">
+              <span *ngIf="passwordControl?.errors?.['required']">La contraseña es obligatoria.</span>
+              <span *ngIf="passwordControl?.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+              <span *ngIf="passwordControl?.errors?.['pattern']">Debe contener una mayúscula y un número.</span>
+            </div>
+          </div>
+
+          <div class="auth-error" *ngIf="authError">
+            <ion-icon name="alert-circle-outline"></ion-icon>
+            <ion-text>{{ authError }}</ion-text>
+          </div>
+
+          <!-- Botón visible solo en vertical -->
+          <div class="buttons-container login-button-container inside-card">
+            <ion-button type="submit" expand="block" [disabled]="isSubmitting" class="login-button">
+              <span class="login-text">Iniciar Sesión</span>
+              <ion-icon name="arrow-forward-outline"></ion-icon>
+            </ion-button>
+          </div>
+        </form>
       </div>
     </div>
 
-    <div class="form-container">
-      <h2 class="login-heading">Inicio de Sesión</h2>
-      
-      <form [formGroup]="formLogin" (ngSubmit)="login()">
-        <div class="form-group">
-          <div class="input-container">
-            <ion-input 
-              type="email" 
-              formControlName="email"
-              [(ngModel)]="admin_email" 
-              placeholder="Correo electrónico">
-            </ion-input>
-            <div class="input-icon">✉️</div>
-          </div>
-          <div class="validation-message" *ngIf="formLogin.get('email')?.invalid && formLogin.get('email')?.touched">
-            <span *ngIf="formLogin.get('email')?.errors?.['required']">Correo requerido</span>
-            <span *ngIf="formLogin.get('email')?.errors?.['email']">Formato de correo inválido</span>
-          </div>
-        </div>
-        
-        <div class="form-group">
-          <div class="input-container">
-            <ion-input 
-              type="password" 
-              formControlName="password"
-              [(ngModel)]="admin_password" 
-              placeholder="Contraseña">
-            </ion-input>
-            <div class="input-icon">🔒</div>
-          </div>
-          <div class="validation-message" *ngIf="formLogin.get('password')?.invalid && formLogin.get('password')?.touched">
-            <span *ngIf="formLogin.get('password')?.errors?.['required']">Contraseña requerida</span>
-            <span *ngIf="formLogin.get('password')?.errors?.['minlength']">Mínimo 8 caracteres</span>
-          </div>
-        </div>
-        
-        <div class="server-error" *ngIf="errorMessage">
-          {{ errorMessage }}
-        </div>
-        
-        <ion-button 
-          expand="block" 
-          type="submit" 
-          [disabled]="formLogin.invalid" 
-          class="login-button">
-          Ingresar
+    <div class="quick-actions">
+      <div class="quick-access-buttons">
+        <ion-button size="small" fill="solid" (click)="quickAccess(1)">
+          <ion-icon name="flash-outline" slot="start"></ion-icon>
+          A1
         </ion-button>
-      </form>
-    </div>
-    
-    <div class="quick-access-section">
-      <p class="quick-access-label">Acceso Rápido</p>
-      <div class="quick-buttons">
-        <div class="quick-button" (click)="accesoRapido(1)">Admin 1</div>
-        <div class="quick-button" (click)="accesoRapido(2)">Admin 2</div>
-        <div class="quick-button" (click)="accesoRapido(3)">Admin 3</div>
-        <div class="quick-button clear" (click)="accesoRapido(0)">Limpiar</div>
+        <ion-button size="small" fill="solid" (click)="quickAccess(2)">
+          <ion-icon name="flash-outline" slot="start"></ion-icon>
+          A2
+        </ion-button>
+        <ion-button size="small" fill="solid" (click)="quickAccess(3)">
+          <ion-icon name="flash-outline" slot="start"></ion-icon>
+          A3
+        </ion-button>
       </div>
+
+      <ion-button fill="clear" (click)="resetForm()" class="reset-button">
+        <ion-icon name="trash-outline" size="large"></ion-icon>
+        <span class="reset-text">Limpiar campos</span>
+      </ion-button>
+
+      <!-- Botón visible solo en horizontal -->
+      <ion-button expand="block" [disabled]="isSubmitting" (click)="login()" class="login-button outside-card">
+        <span class="login-text">Iniciar Sesión</span>
+        <ion-icon name="arrow-forward-outline"></ion-icon>
+      </ion-button>
     </div>
   </div>
 </ion-content>

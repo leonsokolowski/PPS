@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, inject } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonContent, IonButton, IonIcon, IonHeader, IonToolbar, IonTitle, IonGrid, IonRow, IonCol } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
@@ -28,7 +28,19 @@ export class HomeComponent implements OnInit, OnDestroy {
   cartaSeleccionada: Carta | null = null;
   bloquearTablero = false;
   
-  constructor() { }
+  // Variable para orientación
+  orientacionHorizontal = false;
+  
+  constructor() {
+    // Verificar orientación inicial
+    this.orientacionHorizontal = window.innerWidth > window.innerHeight;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    // Actualizar la orientación cuando cambia el tamaño de la ventana
+    this.orientacionHorizontal = window.innerWidth > window.innerHeight;
+  }
 
   ngOnInit() {}
 

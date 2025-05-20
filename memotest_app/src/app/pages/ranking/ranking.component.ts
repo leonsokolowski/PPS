@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, OnInit, inject, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { IonContent, IonHeader, IonToolbar, IonTitle, IonButtons, IonBackButton, IonSegment, IonSegmentButton, IonLabel } from '@ionic/angular/standalone';
 import { Router } from '@angular/router';
@@ -20,8 +20,20 @@ export class RankingComponent implements OnInit {
   nivelSeleccionado: 'facil' | 'medio' | 'dificil' = 'facil';
   mejoresTiempos: Partida[] = [];
   cargando = false;
+  
+  // Variable para orientación
+  orientacionHorizontal = false;
 
-  constructor() { }
+  constructor() {
+    // Verificar orientación inicial
+    this.orientacionHorizontal = window.innerWidth > window.innerHeight;
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onResize() {
+    // Actualizar la orientación cuando cambia el tamaño de la ventana
+    this.orientacionHorizontal = window.innerWidth > window.innerHeight;
+  }
 
   ngOnInit() {
     this.cargarRanking('facil');
@@ -67,6 +79,6 @@ export class RankingComponent implements OnInit {
   }
 
   obtenerUsuarioDelEmail(email: string): string {
-  return email.split('@')[0];
+    return email.split('@')[0];
   }
 }

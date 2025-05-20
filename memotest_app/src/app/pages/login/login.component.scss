@@ -1,223 +1,391 @@
-// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
-
 .login-container {
-  --background: #f8f8f8;
-  // font-family: 'Poppins', sans-serif;
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-}
-
-.wave-background {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 60%;
-  background-color: #e16577;
-  border-radius: 0 0 50% 50%/0 0 100% 100%;
-  transform: scaleX(1.5);
-  z-index: 0;
-}
-
-.login-form-wrapper {
-  position: relative;
-  z-index: 1;
-  height: 100%;
+  width: 100%;
+  max-width: 380px;
+  margin: 0 auto;
+  padding: 20px;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
-  padding: 20px;
-}
-
-.logo-container {
-  text-align: center;
-  margin-bottom: 30px;
-  padding-top: 30px;
-}
-
-.app-logo {
-  display: inline-flex;
   align-items: center;
-  gap: 10px;
+  justify-content: center;
+  height: 100vh;
+  position: relative;
 }
 
-.logo-circle {
-  width: 40px;
-  height: 40px;
-  background-color: white;
-  border-radius: 50%;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+.form-card {
+  width: 100%;
+  border-radius: 2rem;
+  overflow: hidden;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
   position: relative;
   
-  &:before {
+  &::before {
     content: '';
     position: absolute;
-    top: 25%;
-    left: 25%;
-    width: 50%;
-    height: 50%;
-    background-color: #e16577;
+    top: -50px;
+    left: -50px;
+    width: 100px;
+    height: 100px;
     border-radius: 50%;
+    background-color: rgba(219, 130, 219, 0.3);
+    z-index: -1;
+  }
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: -30px;
+    right: -30px;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: rgba(219, 130, 219, 0.3);
+    z-index: -1;
   }
 }
 
-.app-name {
-  color: white;
-  font-size: 28px;
-  font-weight: 600;
-  margin: 0;
+.header {
+  background-color: #e16577;
+  padding: 1.5rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
   
-  span {
-    font-weight: 300;
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.2), transparent 70%);
+  }
+  
+  .logo {
+    margin: 0 auto 15px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #863c3c;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    
+    ion-icon {
+      font-size: 28px;
+      color: white;
+    }
+  }
+  
+  h2 {
+    margin: 0;
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 700;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   }
 }
 
 .form-container {
-  background-color: white;
-  border-radius: 24px;
-  padding: 30px 25px;
-  box-shadow: 0 10px 30px rgba(225, 101, 119, 0.15);
-  margin-bottom: 20px;
+  background-color: #e16577;
+  padding: 1.5rem;
+  width: 100%;
 }
 
-.login-heading {
-  font-size: 24px;
-  font-weight: 600;
-  color: #333;
-  margin-top: 0;
-  margin-bottom: 25px;
-  text-align: center;
+.form-field {
+  margin-bottom: 15px;
 }
 
-.form-group {
-  margin-bottom: 20px;
-}
-
-.input-container {
-  position: relative;
-  border-radius: 12px;
+ion-item {
+  --background: #ffb4bf;
+  --border-radius: 10px;
+  --padding-start: 10px;
+  --padding-end: 10px;
+  margin-bottom: 5px;
   overflow: hidden;
-  border: 1px solid #e8e8e8;
-  background-color: #f9f9f9;
-  padding-right: 40px;
-  transition: all 0.3s ease;
   
-  &:focus-within {
-    border-color: #e16577;
-    box-shadow: 0 0 0 2px rgba(225, 101, 119, 0.1);
+  ion-label {
+    --color: #863c3c;
+  }
+  
+  ion-input {
+    --color: #863c3c;
+  }
+  
+  ion-icon {
+    color: #863c3c;
+    margin-right: 5px;
   }
 }
 
-ion-input {
-  --padding-start: 16px;
-  --padding-end: 16px;
-  --padding-top: 14px;
-  --padding-bottom: 14px;
-  --placeholder-color: #aaa;
-  --placeholder-opacity: 0.8;
-  --color: #333;
-  // font-family: 'Poppins', sans-serif;
-  font-size: 15px;
-}
-
-.input-icon {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  font-size: 16px;
-}
-
-.validation-message {
-  color: #e16577;
-  font-size: 13px;
-  margin-top: 6px;
-  padding-left: 5px;
-}
-
-.server-error {
-  background-color: rgba(225, 101, 119, 0.1);
-  color: #e16577;
-  border-radius: 8px;
-  padding: 10px 15px;
-  margin-bottom: 20px;
-  font-size: 14px;
-  text-align: center;
-}
-
-.login-button {
-  --background: #e16577;
-  --background-activated: darken(#e16577, 10%);
-  --background-hover: darken(#e16577, 10%);
-  --color: white;
-  --border-radius: 12px;
-  --box-shadow: 0 4px 10px rgba(225, 101, 119, 0.3);
+.error-message {
+  color: #fff;
+  font-size: 12px;
   margin-top: 5px;
-  font-weight: 500;
-  letter-spacing: 0.5px;
-  height: 52px;
-  text-transform: none;
-  font-size: 16px;
+  padding-left: 16px;
+}
+
+.auth-error {
+  margin: 15px 0;
+  text-align: center;
+  color: #fff;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
-  &:disabled {
-    --background: rgba(225, 101, 119, 0.6);
-    --opacity: 1;
+  ion-icon {
+    margin-right: 5px;
+    font-size: 18px;
   }
 }
 
-.quick-access-section {
-  text-align: center;
-  margin-top: auto;
-  padding-bottom: 20px;
+.buttons-container {
+  margin-top: 20px;
 }
 
-.quick-access-label {
-  color: #777;
-  font-size: 14px;
+ion-button[type="submit"] {
+  --background: #863c3c;
+  --color: white;
+  --border-radius: 1rem;
   margin-bottom: 10px;
-}
-
-.quick-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.quick-button {
-  background-color: white;
-  padding: 8px 16px;
-  border-radius: 20px;
-  font-size: 13px;
-  color: #e16577;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-  cursor: pointer;
-  transition: all 0.2s ease;
+  font-weight: bold;
+  height: 48px;
   
   &:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --background: #762c2c;
   }
   
-  &.clear {
-    background-color: rgba(0, 0, 0, 0.05);
-    color: #888;
+  ion-icon {
+    font-size: 24px;
   }
 }
 
-// Media queries
-@media (min-height: 700px) {
-  .form-container {
-    margin-top: 20px;
+.quick-actions {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+
+.quick-access-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  width: 100%;
+  
+  ion-button {
+    --background: #db82db;
+    --color: white;
+    --border-radius: 0.8rem;
+    flex: 1;
+    margin: 0 5px;
+    
+    &:first-child {
+      margin-left: 0;
+    }
+    
+    &:last-child {
+      margin-right: 0;
+    }
+    
+    &:hover {
+      --background: #c06dc0;
+    }
   }
 }
 
-@media (max-width: 320px) {
-  .form-container {
-    padding: 25px 15px;
+.reset-button {
+  --background: #ff3b30;
+  --color: white;
+  margin-top: 5px;
+  border-radius: 8px;
+  
+  ion-icon {
+    margin-right: 5px;
+    font-size: 18px;
+  }
+}
+
+ion-content {
+  --background: #863c3c;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle at bottom left, rgba(255, 180, 191, 0.15), transparent 40%),
+                radial-gradient(circle at top right, rgba(219, 130, 219, 0.15), transparent 40%);
+    z-index: -1;
+  }
+}
+
+.inside-card {
+  display: block;
+}
+
+.outside-card {
+  display: none;
+}
+
+/* Responsive design */
+@media (max-height: 600px) {
+  .login-container {
+    padding: 10px;
   }
   
-  .login-heading {
-    font-size: 22px;
+  .header {
+    padding: 1rem;
+    
+    .logo {
+      width: 50px;
+      height: 50px;
+      margin-bottom: 10px;
+      
+      ion-icon {
+        font-size: 24px;
+      }
+    }
+    
+    h2 {
+      font-size: 1.5rem;
+    }
   }
+  
+  .form-container {
+    padding: 1rem;
+  }
+}
+
+/* Para orientación horizontal */
+@media (orientation: landscape) {
+  .login-container {
+    height: 100%;
+    padding: 15px;
+    flex-direction: row;
+    align-items: center;
+    max-width: 100%;
+    overflow: hidden;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .inside-card {
+    display: none !important;
+  }
+
+  .outside-card {
+    display: block !important;
+  }
+
+  .login-text
+  {
+    display: none;
+  }
+  
+  .form-card {
+    max-width: 450px;
+    flex: 0 0 auto;
+    max-height: 90vh;
+  }
+  
+  .header {
+    padding: 0.8rem;
+    
+    .logo {
+      width: 45px;
+      height: 45px;
+      margin-bottom: 5px;
+      
+      ion-icon {
+        font-size: 22px;
+      }
+    }
+    
+    h2 {
+      font-size: 1.4rem;
+    }
+  }
+  
+  .form-container {
+    padding: 0.8rem;
+  }
+  
+  .form-field {
+    margin-bottom: 8px;
+  }
+  
+  ion-button[type="submit"] {
+    height: 42px;
+  }
+  
+  .quick-actions {
+    width: auto;
+    margin-top: 0;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-height: 90vh;
+  }
+  
+  .quick-access-buttons {
+    flex-direction: column;
+    margin-bottom: 0;
+    
+    ion-button {
+      margin: 5px 0;
+    }
+  }
+  
+  .reset-button {
+    margin-top: 15px;
+    flex-direction: column;
+    --padding-start: 0;
+    --padding-end: 0;
+    height: 42px;
+    width: 42px;
+    
+    .reset-text {
+      display: none;
+    }
+    
+    ion-icon {
+      margin-right: 0;
+      font-size: 20px;
+    }
+  }
+  /* Estilos específicos para mover el botón de login fuera de la tarjeta en horizontal */
+
+.login-button.outside-card {
+  display: none;
+}
+
+.login-button.inside-card {
+    display: none;
+  }
+
+  .login-button.outside-card {
+    display: block;
+    --background: #e16577; /* mismo color que el botón normal */
+    --color: white;
+    --border-radius: 1rem;
+    height: 48px;
+    font-weight: bold;
+    width: 100%;
+    margin-top: 10px;
+  }
+
+  .quick-actions {
+    align-items: stretch;
+  }
+
+@media screen and (orientation: landscape) and (max-width: 768px) {
+  
+}
+
+
 }

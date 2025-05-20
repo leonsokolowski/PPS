@@ -4,18 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { AuthService } from '../../services/auth.service';
-// Importando los iconos
-import { addIcons } from 'ionicons';
-import { 
-  lockClosedOutline, 
-  mailOutline, 
-  keyOutline, 
-  logInOutline, 
-  alertCircleOutline, 
-  trashOutline, 
-  flashOutline,
-  arrowForwardOutline
-} from 'ionicons/icons';
 
 @Component({
   selector: 'app-login',
@@ -33,18 +21,6 @@ export class LoginComponent implements OnInit {
   private fb = inject(FormBuilder);
 
   constructor() {
-    // Registrando los iconos
-    addIcons({
-      'lock-closed-outline': lockClosedOutline,
-      'mail-outline': mailOutline,
-      'key-outline': keyOutline,
-      'log-in-outline': logInOutline,
-      'alert-circle-outline': alertCircleOutline,
-      'trash-outline': trashOutline,
-      'flash-outline': flashOutline,
-      'arrow-forward-outline': arrowForwardOutline
-    });
-
     this.loginForm = this.fb.group({
       email: ['', [
         Validators.required,
@@ -106,20 +82,20 @@ export class LoginComponent implements OnInit {
     switch(option) {
       case 1:
         this.loginForm.setValue({
-          email: 'admin1@example.com',
-          password: 'Administrador1'
+          email: 'usuario1@ejemplo.com',
+          password: 'Password1'
         });
         break;
       case 2:
         this.loginForm.setValue({
-          email: 'admin2@example.com',
-          password: 'Administrador2'
+          email: 'usuario2@ejemplo.com',
+          password: 'Password2'
         });
         break;
       case 3:
         this.loginForm.setValue({
-          email: 'admin3@example.com',
-          password: 'Administrador3'
+          email: 'usuario3@ejemplo.com',
+          password: 'Password3'
         });
         break;
     }

@@ -443,3 +443,89 @@ ion-content {
     }
   }
 }
+
+/* Nuevos estilos para orientación horizontal y vertical */
+@media (orientation: landscape) {
+  .card-container {
+    height: auto;
+    padding: 0.5rem;
+  }
+  
+  .card {
+    max-width: 90%;
+    padding: 1rem;
+    
+    h1 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* Cambiar disposición de botones a horizontal */
+    .buttons {
+      flex-direction: row;
+      flex-wrap: nowrap;
+      justify-content: space-between;
+      gap: 0.8rem;
+    }
+    
+    .nivel-btn {
+      flex: 1;
+      
+      img {
+        width: 60px;
+        height: 60px;
+      }
+      
+      span {
+        font-size: 0.8rem;
+      }
+    }
+  }
+  
+  /* Ajustes para el tablero de juego en landscape */
+  .tablero {
+    &.facil {
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+    
+    &.medio {
+      grid-template-columns: repeat(5, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+    
+    &.dificil {
+      grid-template-columns: repeat(8, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (orientation: portrait) {
+  .card {
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  .buttons {
+    flex-direction: column;
+  }
+  
+  /* Asegurar que el tablero se ajuste correctamente en vertical */
+  .tablero {
+    &.facil {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+    }
+    
+    &.medio {
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(5, 1fr);
+    }
+    
+    &.dificil {
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(4, 1fr);
+    }
+  }
+}

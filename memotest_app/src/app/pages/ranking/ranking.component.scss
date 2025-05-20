@@ -1,5 +1,41 @@
-ion-content {
+/* Ajuste adicional para dispositivos muy pequeños en landscape */
+@media (max-height: 400px) and (orientation: landscape) {
+  .ion-padding {
+    --padding-top: 0.2rem;
+    --padding-bottom: 0.2rem;
+    --padding-start: 0.5rem;
+    --padding-end: 0.5rem;
+  }
+  
+  .ranking-container h2 {
+    font-size: 1.1rem;
+    margin-bottom: 0.1rem;
+    margin-top: 0;
+  }
+  
+  ion-segment {
+    margin-bottom: 0.1rem;
+  }
+  
+  .tabla-ranking {
+    height: 43vh;
+    margin-bottom: 0.1rem;
+    
+    table {
+      th, td {
+        padding: 0.25rem;
+        font-size: 0.85rem;
+      }
+    }
+  }
+  
+  .volver-btn {
+    padding: 0.3rem 0.8rem;
+    font-size: 0.8rem;
+  }
+}ion-content {
   --background: #863c3c;
+  --padding-bottom: 0.5rem;
 }
 
 ion-toolbar {
@@ -115,5 +151,122 @@ ion-segment {
   &:hover {
     background-color: #d14d60;
     transform: translateY(-2px);
+  }
+}
+
+/* Nuevos estilos para orientación horizontal y vertical */
+@media (orientation: portrait) {
+  .tabla-ranking {
+    font-size: 0.9rem;
+    
+    table {
+      th, td {
+        padding: 0.6rem 0.4rem;
+      }
+      
+      th {
+        font-size: 0.8rem;
+      }
+    }
+  }
+}
+
+@media (orientation: landscape) {
+  .ranking-container {
+    padding: 0;
+    height: 100%;
+    justify-content: space-between;
+    
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 0.4rem;
+    }
+  }
+  
+  ion-segment {
+    margin-bottom: 0.4rem;
+  }
+  
+  .tabla-ranking {
+    height: 48vh; /* Reducido para dejar espacio para el botón */
+    overflow-y: auto;
+    margin-bottom: 0.4rem;
+    
+    table {
+      th {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+      }
+    }
+  }
+  
+  .volver-btn-container {
+    margin-top: 0.3rem;
+  }
+  
+  .volver-btn {
+    padding: 0.6rem 1.2rem;
+  }
+}
+
+/* Media queries adicionales para ajustar mejor la tabla */
+@media (max-width: 400px) {
+  .tabla-ranking {
+    font-size: 0.8rem;
+    
+    table {
+      th, td {
+        padding: 0.5rem 0.3rem;
+      }
+      
+      .posicion {
+        width: 8%;
+      }
+      
+      .usuario {
+        width: 32%;
+      }
+      
+      .tiempo {
+        width: 25%;
+      }
+      
+      .fecha {
+        width: 35%;
+      }
+    }
+  }
+}
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .ranking-container {
+    padding: 0;
+  }
+  
+  .ranking-container h2 {
+    font-size: 1.2rem;
+    margin-bottom: 0.2rem;
+    margin-top: 0;
+  }
+  
+  ion-segment {
+    margin-bottom: 0.2rem;
+  }
+  
+  .tabla-ranking {
+    height: 45vh;
+    margin-bottom: 0.1rem;
+    
+    table {
+      th, td {
+        padding: 0.3rem;
+      }
+    }
+  }
+  
+  .volver-btn {
+    padding: 0.4rem srem;
+    font-size: 0.9rem;
   }
 }
