@@ -1,27 +1,76 @@
-<ion-content class="ion-padding fondo">
-  <div class="titulo-principal">
-    <h2>🧠 Bienvenido a Memotest App 🧠</h2>
+<ion-content class="ion-padding">
+  <!-- Menú Principal -->
+  <div *ngIf="mostrarMenuPrincipal" class="menu-principal">
+    <div class="titulo-principal">
+      <h2>🧠 Bienvenido a Memotest App 🧠</h2>
+    </div>
+
+    <div class="card-container">
+      <div class="card">
+        <h1>Selecciona el nivel de dificultad:</h1>
+
+        <div class="buttons">
+          <button class="nivel-btn" (click)="iniciarJuego('facil')">
+            <img src="assets/home/animales.png" alt="Animales" />
+            <span>Fácil - 3 pares de animales</span>
+          </button>
+
+          <button class="nivel-btn" (click)="iniciarJuego('medio')">
+            <img src="assets/home/herramientas.png" alt="Herramientas" />
+            <span>Medio - 5 pares de herramientas</span>
+          </button>
+
+          <button class="nivel-btn" (click)="iniciarJuego('dificil')">
+            <img src="assets/home/frutas.png" alt="Frutas" />
+            <span>Difícil - 8 pares de frutas</span>
+          </button>
+        </div>
+
+        <div class="botones-adicionales">
+          <button class="ranking-btn" (click)="verRanking()">Ver Ranking</button>
+          <button class="logout-btn" (click)="logout()">Cerrar Sesión</button>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <div class="card-container">
-    <div class="card">
-      <h1>Selecciona el nivel de dificultad:</h1>
+  <!-- Pantalla de Juego -->
+  <div *ngIf="!mostrarMenuPrincipal" class="pantalla-juego">
+    <div class="header-juego">
+      <h3>Nivel: {{nivelActual === 'facil' ? 'Fácil' : nivelActual === 'medio' ? 'Medio' : 'Difícil'}}</h3>
+      <div class="tiempo">Tiempo: {{formatearTiempo(tiempoTranscurrido)}}</div>
+      <button class="volver-btn" (click)="volverAlMenu()">Volver al Menú</button>
+    </div>
 
-      <div class="buttons">
-        <button class="nivel-btn">
-          <img src="assets/home/animales.png" alt="Animales" />
-          <span>Fácil - 3 pares de animales</span>
-        </button>
+    <!-- Tablero de juego -->
+    <div class="tablero" [ngClass]="{'facil': nivelActual === 'facil', 'medio': nivelActual === 'medio', 'dificil': nivelActual === 'dificil'}">
+      <div 
+        class="carta" 
+        *ngFor="let carta of cartas" 
+        [ngClass]="{
+          'descubierta': carta.descubierta,
+          'emparejada': carta.emparejada
+        }"
+        (click)="seleccionarCarta(carta)"
+      >
+        <div class="carta-interior">
+          <div class="carta-frente">?</div>
+          <div class="carta-dorso">
+            <img [src]="carta.imagen" [alt]="carta.imagen" />
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <button class="nivel-btn">
-          <img src="assets/home/herramientas.png" alt="Herramientas" />
-          <span>Medio - 5 pares de herramientas</span>
-        </button>
-
-        <button class="nivel-btn">
-          <img src="assets/home/frutas.png" alt="Frutas" />
-          <span>Difícil - 8 pares de frutas</span>
-        </button>
+    <!-- Modal de juego terminado -->
+    <div *ngIf="juegoTerminado" class="modal-juego-terminado">
+      <div class="modal-contenido">
+        <h2>¡Felicitaciones!</h2>
+        <p>Has completado el nivel {{nivelActual === 'facil' ? 'Fácil' : nivelActual === 'medio' ? 'Medio' : 'Difícil'}} en {{formatearTiempo(tiempoTranscurrido)}}</p>
+        <div class="botones-modal">
+          <button (click)="volverAlMenu()">Volver al Menú</button>
+          <button (click)="verRanking()">Ver Ranking</button>
+        </div>
       </div>
     </div>
   </div>

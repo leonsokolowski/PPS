@@ -1,0 +1,48 @@
+<ion-content class="ion-padding">
+  <div class="ranking-container">
+    <h2>Mejores Tiempos</h2>
+    
+    <ion-segment [(ngModel)]="nivelSeleccionado" (ionChange)="cambiarNivel($event)">
+      <ion-segment-button value="facil">
+        <ion-label>Fácil</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="medio">
+        <ion-label>Medio</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="dificil">
+        <ion-label>Difícil</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+    <div class="tabla-ranking">
+      <table>
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Usuario</th>
+            <th>Tiempo</th>
+            <th>Fecha</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngIf="cargando">
+            <td colspan="4" class="cargando">Cargando ranking...</td>
+          </tr>
+          <tr *ngIf="!cargando && mejoresTiempos.length === 0">
+            <td colspan="4" class="sin-datos">No hay registros para mostrar</td>
+          </tr>
+          <tr *ngFor="let partida of mejoresTiempos; let i = index">
+            <td class="posicion">{{ i + 1 }}</td>
+            <td class="usuario">{{ obtenerUsuarioDelEmail(partida.email) }}...</td>
+            <td class="tiempo">{{ formatearTiempo(partida.tiempo_segundos) }}</td>
+            <td class="fecha">{{ formatearFecha(partida.fecha) }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="volver-btn-container">
+      <button class="volver-btn" (click)="volverAlMenu()">Volver al Menú Principal</button>
+    </div>
+  </div>
+</ion-content>

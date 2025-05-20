@@ -11,6 +11,7 @@ export class AuthService {
   router = inject(Router)
   usuario_actual : User | null = null;
   constructor() {
+    //Saber si el usuario esta logeado o no
     this.sb.supabase.auth.onAuthStateChange((event, session) => {
       console.log(event, session);
 
@@ -21,8 +22,12 @@ export class AuthService {
         this.router.navigateByUrl("/login");
       }else{ //si hay sesion
         this.usuario_actual = session.user;
-        //redigir al home
-        this.router.navigateByUrl("/home");
+        const currentUrl = this.router.url;
+
+        if (currentUrl === '/login' || currentUrl === '/registro' || currentUrl === '/') {
+          //redigir al home
+          this.router.navigateByUrl("/home");
+        }
       }
     });
    }
