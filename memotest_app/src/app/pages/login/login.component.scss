@@ -1,391 +1,381 @@
+// @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
 .login-container {
-  width: 100%;
-  max-width: 380px;
-  margin: 0 auto;
-  padding: 20px;
-  box-sizing: border-box;
+  --background: #863c3c;
+  // font-family: 'Poppins', sans-serif;
+  position: relative;
+  height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  position: relative;
 }
 
-.form-card {
-  width: 100%;
-  border-radius: 2rem;
-  overflow: hidden;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-  position: relative;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: -50px;
-    left: -50px;
-    width: 100px;
-    height: 100px;
-    border-radius: 50%;
-    background-color: rgba(219, 130, 219, 0.3);
-    z-index: -1;
-  }
-  
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -30px;
-    right: -30px;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    background-color: rgba(219, 130, 219, 0.3);
-    z-index: -1;
-  }
-}
-
-.header {
+.wave-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
   background-color: #e16577;
-  padding: 1.5rem;
-  text-align: center;
+  border-radius: 0 0 50% 50%/0 0 100% 100%;
+  transform: scaleX(1.5);
+  z-index: 0;
+}
+
+.login-form-wrapper {
   position: relative;
-  overflow: hidden;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.logo-container {
+  text-align: center;
+  margin-bottom: 30px;
+  flex-shrink: 0;
+}
+
+.app-logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo-circle {
+  width: 40px;
+  height: 40px;
+  background-color: white;
+  border-radius: 50%;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: relative;
   
-  &::before {
+  &:before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at top right, rgba(255, 255, 255, 0.2), transparent 70%);
-  }
-  
-  .logo {
-    margin: 0 auto 15px;
-    width: 60px;
-    height: 60px;
+    top: 25%;
+    left: 25%;
+    width: 50%;
+    height: 50%;
+    background-color: #e16577;
     border-radius: 50%;
-    background-color: #863c3c;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-    
-    ion-icon {
-      font-size: 28px;
-      color: white;
-    }
   }
+}
+
+.app-name {
+  color: white;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0;
   
-  h2 {
-    margin: 0;
-    color: #fff;
-    font-size: 1.8rem;
-    font-weight: 700;
-    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  span {
+    font-weight: 300;
   }
 }
 
 .form-container {
-  background-color: #e16577;
-  padding: 1.5rem;
-  width: 100%;
+  background-color: #ffb4bf;
+  border-radius: 24px;
+  padding: 30px 25px;
+  box-shadow: 0 10px 30px rgba(225, 101, 119, 0.15);
+  margin-bottom: 20px;
+  flex-shrink: 0;
 }
 
-.form-field {
-  margin-bottom: 15px;
+.login-heading {
+  font-size: 24px;
+  font-weight: 600;
+  color: #333;
+  margin-top: 0;
+  margin-bottom: 25px;
+  text-align: center;
 }
 
-ion-item {
-  --background: #ffb4bf;
-  --border-radius: 10px;
-  --padding-start: 10px;
-  --padding-end: 10px;
-  margin-bottom: 5px;
+.form-group {
+  margin-bottom: 20px;
+}
+
+.input-container {
+  position: relative;
+  border-radius: 12px;
   overflow: hidden;
+  border: 1px solid #e8e8e8;
+  background-color: #f9f9f9;
+  padding-right: 40px;
+  transition: all 0.3s ease;
   
-  ion-label {
-    --color: #863c3c;
+  &:focus-within {
+    border-color: #e16577;
+    box-shadow: 0 0 0 2px rgba(225, 101, 119, 0.1);
+  }
+}
+
+ion-input {
+  --padding-start: 16px;
+  --padding-end: 16px;
+  --padding-top: 14px;
+  --padding-bottom: 14px;
+  --placeholder-color: #aaa;
+  --placeholder-opacity: 0.8;
+  --color: #333;
+  // font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+}
+
+.input-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 16px;
+}
+
+.validation-message {
+  color: #e16577;
+  font-size: 13px;
+  margin-top: 6px;
+  padding-left: 5px;
+  line-height: 1.2;
+}
+
+.server-error {
+  background-color: rgba(225, 101, 119, 0.1);
+  color: #e16577;
+  border-radius: 8px;
+  padding: 10px 15px;
+  margin-bottom: 20px;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.login-button {
+  --background: #e16577;
+  --background-activated: darken(#e16577, 10%);
+  --background-hover: darken(#e16577, 10%);
+  --color: white;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 10px rgba(225, 101, 119, 0.3);
+  margin-top: 5px;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+  height: 52px;
+  text-transform: none;
+  font-size: 16px;
+  
+  &:disabled {
+    --background: rgba(233, 0, 35, 0.6);
+    --opacity: 1;
+  }
+}
+
+.quick-access-section {
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.quick-access-label {
+  color: #dadada;
+  font-size: 14px;
+  margin-bottom: 10px;
+}
+
+.quick-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.quick-button {
+  background-color: white;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  color: #e16577;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  &.clear {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: #dadada;
+  }
+}
+
+// Media queries para orientación horizontal (landscape)
+@media screen and (orientation: landscape) and (max-height: 500px) {
+  .login-form-wrapper {
+    padding: 15px;
+    justify-content: center;
+  }
+  
+  .logo-container {
+    margin-bottom: 15px;
+  }
+  
+  .app-name {
+    font-size: 22px;
+  }
+  
+  .logo-circle {
+    width: 30px;
+    height: 30px;
+  }
+  
+  .form-container {
+    padding: 20px;
+    margin-bottom: 15px;
+    border-radius: 16px;
+  }
+  
+  .login-heading {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+  
+  .form-group {
+    margin-bottom: 12px;
   }
   
   ion-input {
-    --color: #863c3c;
+    --padding-top: 10px;
+    --padding-bottom: 10px;
+    font-size: 14px;
   }
   
-  ion-icon {
-    color: #863c3c;
-    margin-right: 5px;
-  }
-}
-
-.error-message {
-  color: #fff;
-  font-size: 12px;
-  margin-top: 5px;
-  padding-left: 16px;
-}
-
-.auth-error {
-  margin: 15px 0;
-  text-align: center;
-  color: #fff;
-  font-weight: bold;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  
-  ion-icon {
-    margin-right: 5px;
-    font-size: 18px;
-  }
-}
-
-.buttons-container {
-  margin-top: 20px;
-}
-
-ion-button[type="submit"] {
-  --background: #863c3c;
-  --color: white;
-  --border-radius: 1rem;
-  margin-bottom: 10px;
-  font-weight: bold;
-  height: 48px;
-  
-  &:hover {
-    --background: #762c2c;
+  .login-button {
+    height: 42px;
+    font-size: 14px;
+    margin-top: 3px;
   }
   
-  ion-icon {
-    font-size: 24px;
-  }
-}
-
-.quick-actions {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  margin-top: 15px;
-}
-
-.quick-access-buttons {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 10px;
-  width: 100%;
-  
-  ion-button {
-    --background: #db82db;
-    --color: white;
-    --border-radius: 0.8rem;
-    flex: 1;
-    margin: 0 5px;
-    
-    &:first-child {
-      margin-left: 0;
-    }
-    
-    &:last-child {
-      margin-right: 0;
-    }
-    
-    &:hover {
-      --background: #c06dc0;
-    }
-  }
-}
-
-.reset-button {
-  --background: #ff3b30;
-  --color: white;
-  margin-top: 5px;
-  border-radius: 8px;
-  
-  ion-icon {
-    margin-right: 5px;
-    font-size: 18px;
-  }
-}
-
-ion-content {
-  --background: #863c3c;
-  
-  &::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(circle at bottom left, rgba(255, 180, 191, 0.15), transparent 40%),
-                radial-gradient(circle at top right, rgba(219, 130, 219, 0.15), transparent 40%);
-    z-index: -1;
-  }
-}
-
-.inside-card {
-  display: block;
-}
-
-.outside-card {
-  display: none;
-}
-
-/* Responsive design */
-@media (max-height: 600px) {
-  .login-container {
-    padding: 10px;
+  .validation-message {
+    font-size: 11px;
+    margin-top: 3px;
   }
   
-  .header {
-    padding: 1rem;
-    
-    .logo {
-      width: 50px;
-      height: 50px;
-      margin-bottom: 10px;
-      
-      ion-icon {
-        font-size: 24px;
-      }
-    }
-    
-    h2 {
-      font-size: 1.5rem;
-    }
+  .server-error {
+    padding: 8px 12px;
+    margin-bottom: 12px;
+    font-size: 12px;
   }
   
-  .form-container {
-    padding: 1rem;
-  }
-}
-
-/* Para orientación horizontal */
-@media (orientation: landscape) {
-  .login-container {
-    height: 100%;
-    padding: 15px;
-    flex-direction: row;
-    align-items: center;
-    max-width: 100%;
-    overflow: hidden;
-    justify-content: center;
-    gap: 20px;
-  }
-
-  .inside-card {
-    display: none !important;
-  }
-
-  .outside-card {
-    display: block !important;
-  }
-
-  .login-text
-  {
-    display: none;
-  }
-  
-  .form-card {
-    max-width: 450px;
-    flex: 0 0 auto;
-    max-height: 90vh;
-  }
-  
-  .header {
-    padding: 0.8rem;
-    
-    .logo {
-      width: 45px;
-      height: 45px;
-      margin-bottom: 5px;
-      
-      ion-icon {
-        font-size: 22px;
-      }
-    }
-    
-    h2 {
-      font-size: 1.4rem;
-    }
-  }
-  
-  .form-container {
-    padding: 0.8rem;
-  }
-  
-  .form-field {
+  .quick-access-label {
+    font-size: 12px;
     margin-bottom: 8px;
   }
   
-  ion-button[type="submit"] {
-    height: 42px;
+  .quick-button {
+    padding: 6px 12px;
+    font-size: 11px;
   }
   
-  .quick-actions {
-    width: auto;
-    margin-top: 0;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    max-height: 90vh;
+  .wave-background {
+    height: 50%;
   }
-  
-  .quick-access-buttons {
-    flex-direction: column;
-    margin-bottom: 0;
-    
-    ion-button {
-      margin: 5px 0;
-    }
-  }
-  
-  .reset-button {
-    margin-top: 15px;
-    flex-direction: column;
-    --padding-start: 0;
-    --padding-end: 0;
-    height: 42px;
-    width: 42px;
-    
-    .reset-text {
-      display: none;
-    }
-    
-    ion-icon {
-      margin-right: 0;
-      font-size: 20px;
-    }
-  }
-  /* Estilos específicos para mover el botón de login fuera de la tarjeta en horizontal */
-
-.login-button.outside-card {
-  display: none;
 }
 
-.login-button.inside-card {
-    display: none;
+// Media queries adicionales para dispositivos muy pequeños en horizontal
+@media screen and (orientation: landscape) and (max-height: 400px) {
+  .login-form-wrapper {
+    padding: 10px;
   }
-
-  .login-button.outside-card {
-    display: block;
-    --background: #e16577; /* mismo color que el botón normal */
-    --color: white;
-    --border-radius: 1rem;
-    height: 48px;
-    font-weight: bold;
-    width: 100%;
-    margin-top: 10px;
-  }
-
-  .quick-actions {
-    align-items: stretch;
-  }
-
-@media screen and (orientation: landscape) and (max-width: 768px) {
   
+  .logo-container {
+    margin-bottom: 10px;
+  }
+  
+  .app-name {
+    font-size: 20px;
+  }
+  
+  .form-container {
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 12px;
+  }
+  
+  .login-heading {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+  
+  .form-group {
+    margin-bottom: 8px;
+  }
+  
+  ion-input {
+    --padding-top: 8px;
+    --padding-bottom: 8px;
+    font-size: 13px;
+  }
+  
+  .login-button {
+    height: 38px;
+    font-size: 13px;
+  }
+  
+  .validation-message {
+    font-size: 10px;
+    margin-top: 2px;
+  }
+  
+  .server-error {
+    padding: 6px 10px;
+    margin-bottom: 8px;
+    font-size: 11px;
+  }
+  
+  .quick-access-section {
+    margin-top: 5px;
+  }
+  
+  .quick-access-label {
+    font-size: 11px;
+    margin-bottom: 5px;
+  }
+  
+  .quick-button {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
 }
 
+// Media queries para pantallas altas en vertical
+@media (min-height: 700px) and (orientation: portrait) {
+  .form-container {
+    margin-top: 20px;
+  }
+}
 
+// Media queries para pantallas pequeñas en vertical
+@media (max-width: 320px) and (orientation: portrait) {
+  .form-container {
+    padding: 25px 15px;
+  }
+  
+  .login-heading {
+    font-size: 22px;
+  }
+}
+
+// Media queries para tablets en horizontal
+@media screen and (orientation: landscape) and (min-width: 768px) {
+  .login-form-wrapper {
+    max-width: 500px;
+    margin: 0 auto;
+  }
+  
+  .wave-background {
+    height: 55%;
+  }
 }

@@ -1,50 +1,34 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IonicModule } from '@ionic/angular';
+import {FormBuilder, FormControl, FormGroup, FormsModule, Validators, ReactiveFormsModule} from '@angular/forms';
+import { IonContent, IonHeader, IonTitle, IonToolbar, IonInput, IonButton, IonCard, IonCardHeader, IonCardTitle, IonCardContent } from '@ionic/angular/standalone';
+import { Router, RouterModule, NavigationEnd } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
-// Importando los iconos
-import { addIcons } from 'ionicons';
-import { 
-  lockClosedOutline, 
-  mailOutline, 
-  keyOutline, 
-  logInOutline, 
-  alertCircleOutline, 
-  trashOutline, 
-  flashOutline,
-  arrowForwardOutline
-} from 'ionicons/icons';
+import { Subscription } from 'rxjs';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
   standalone: true,
-  imports: [IonicModule, CommonModule, FormsModule, ReactiveFormsModule]
+  imports: [CommonModule, FormsModule, ReactiveFormsModule,IonContent,IonInput,IonButton, RouterModule]
 })
-export class LoginComponent implements OnInit {
-  loginForm: FormGroup;
-  authError: string = '';
-  isSubmitting: boolean = false;
+export class LoginComponent implements OnInit, OnDestroy {
 
-  private authService = inject(AuthService);
+  private auth = inject(AuthService);
   private fb = inject(FormBuilder);
-
+  private router = inject(Router);
+  
+  admin_email: string = "";
+  admin_password: string = "";
+  isSubmitting: boolean = false;
+  loginForm: FormGroup;
+  errorMessage: string = "";
+  
+  private routerSubscription?: Subscription;
+  
   constructor() {
-    // Registrando los iconos
-    addIcons({
-      'lock-closed-outline': lockClosedOutline,
-      'mail-outline': mailOutline,
-      'key-outline': keyOutline,
-      'log-in-outline': logInOutline,
-      'alert-circle-outline': alertCircleOutline,
-      'trash-outline': trashOutline,
-      'flash-outline': flashOutline,
-      'arrow-forward-outline': arrowForwardOutline
-    });
-
     this.loginForm = this.fb.group({
       email: ['', [
         Validators.required,
@@ -59,8 +43,27 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Aseguramos que los campos estén vacíos al iniciar el componente
+    // Limpiar formulario al inicializar el componente
     this.resetForm();
+    
+    // Suscribirse a los eventos de navegación para detectar cuando llegamos desde otras rutas
+    this.routerSubscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: NavigationEnd) => {
+        // Si llegamos al login desde cualquier otra ruta, limpiar el formulario
+        if (event.url === '/login') {
+          setTimeout(() => {
+            this.resetForm();
+          }, 100); // Pequeño delay para asegurar que el componente esté completamente cargado
+        }
+      });
+  }
+
+  ngOnDestroy() {
+    // Limpiar la suscripción para evitar memory leaks
+    if (this.routerSubscription) {
+      this.routerSubscription.unsubscribe();
+    }
   }
 
   async login() {
@@ -74,10 +77,10 @@ export class LoginComponent implements OnInit {
     }
 
     this.isSubmitting = true;
-    this.authError = '';
+    this.errorMessage = '';
     
     try {
-      const { data, error } = await this.authService.iniciarSesion(
+      const { data, error } = await this.auth.iniciarSesion(
         this.loginForm.value.email,
         this.loginForm.value.password
       );
@@ -85,52 +88,71 @@ export class LoginComponent implements OnInit {
       if (error) {
         // Personalización de mensajes de error en español
         if (error.message === 'Invalid login credentials') {
-          this.authError = 'Usuario no registrado o credenciales incorrectas';
+          this.errorMessage = 'Usuario no registrado o credenciales incorrectas';
         } else if (error.message.includes('rate limited')) {
-          this.authError = 'Demasiados intentos fallidos. Intente más tarde';
+          this.errorMessage = 'Demasiados intentos fallidos. Intente más tarde';
         } else {
-          this.authError = 'Error al iniciar sesión: ' + error.message;
+          this.errorMessage = 'Error al iniciar sesión';
         }
         console.error('Error de inicio de sesión:', error);
       }
     } catch (error: any) {
-      this.authError = 'Ha ocurrido un error al iniciar sesión';
+      this.errorMessage = 'Ha ocurrido un error al iniciar sesión';
       console.error('Error de inicio de sesión:', error);
     } finally {
       this.isSubmitting = false;
     }
   }
 
-  // Método para acceso rápido con credenciales predefinidas
-  quickAccess(option: number) {
-    switch(option) {
+  resetForm() {
+    // Resetear el formulario reactivo
+    this.loginForm.reset();
+    
+    // Limpiar también las variables del template (ngModel)
+    this.admin_email = '';
+    this.admin_password = '';
+    
+    // Limpiar mensaje de error
+    this.errorMessage = '';
+    
+    // Limpiar el estado de los controles (untouched, pristine)
+    Object.keys(this.loginForm.controls).forEach(key => {
+      const control = this.loginForm.get(key);
+      control?.markAsUntouched();
+      control?.markAsPristine();
+    });
+  }
+
+  accesoRapido(id: number) {
+    switch(id) {
       case 1:
         this.loginForm.setValue({
           email: 'admin1@example.com',
           password: 'Administrador1'
         });
+        // También actualizar las variables del template
+        this.admin_email = 'admin1@example.com';
+        this.admin_password = 'Administrador1';
         break;
       case 2:
         this.loginForm.setValue({
           email: 'admin2@example.com',
           password: 'Administrador2'
         });
+        this.admin_email = 'admin2@example.com';
+        this.admin_password = 'Administrador2';
         break;
       case 3:
         this.loginForm.setValue({
           email: 'admin3@example.com',
           password: 'Administrador3'
         });
+        this.admin_email = 'admin3@example.com';
+        this.admin_password = 'Administrador3';
         break;
     }
   }
 
-  resetForm() {
-    this.loginForm.reset();
-    this.authError = '';
-  }
-
-  // Getters para facilitar la validación en la plantilla
   get emailControl() { return this.loginForm.get('email'); }
   get passwordControl() { return this.loginForm.get('password'); }
 }
