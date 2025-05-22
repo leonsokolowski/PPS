@@ -26,7 +26,7 @@ export class HomeComponent implements OnInit {
       { imagen: 'assets/home/verde.png', traducciones: { es: 'Verde', en: 'Green', pt: 'Verde' } },
       { imagen: 'assets/home/amarillo.png', traducciones: { es: 'Amarillo', en: 'Yellow', pt: 'Amarelo' } },
       { imagen: 'assets/home/naranja.png', traducciones: { es: 'Naranja', en: 'Orange', pt: 'Laranja' } },
-      { imagen: 'assets/home/violeta.png', traducciones: { es: 'Violeta', en: 'Purple', pt: 'Roxo' } }
+      { imagen: 'assets/home/violeta.png', traducciones: { es: 'Violeta', en: 'Violet', pt: 'Violeta' } }
     ],
     numeros: [
       { imagen: 'assets/home/uno.png', traducciones: { es: 'Uno', en: 'One', pt: 'Um' } },
@@ -40,9 +40,9 @@ export class HomeComponent implements OnInit {
       { imagen: 'assets/home/perro.png', traducciones: { es: 'Perro', en: 'Dog', pt: 'Cachorro' } },
       { imagen: 'assets/home/gato.png', traducciones: { es: 'Gato', en: 'Cat', pt: 'Gato' } },
       { imagen: 'assets/home/vaca.png', traducciones: { es: 'Vaca', en: 'Cow', pt: 'Vaca' } },
-      { imagen: 'assets/home/leon.png', traducciones: { es: 'Pato', en: 'Duck', pt: 'Pato' } },
-      { imagen: 'assets/home/elefante.png', traducciones: { es: 'Caballo', en: 'Horse', pt: 'Cavalo' } },
-      { imagen: 'assets/home/mono.png', traducciones: { es: 'Oveja', en: 'Sheep', pt: 'Ovelha' } }
+      { imagen: 'assets/home/leon.png', traducciones: { es: 'Leon', en: 'Lion', pt: 'Leão' } },
+      { imagen: 'assets/home/elefante.png', traducciones: { es: 'Elefante', en: 'Elephant', pt: 'Elefante' } },
+      { imagen: 'assets/home/mono.png', traducciones: { es: 'Mono', en: 'Monkey', pt: 'Macaco' } }
     ]
   };
 

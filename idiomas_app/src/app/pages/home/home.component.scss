@@ -1,118 +1,144 @@
+// Configuración base
+.fondo {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: -1;
+}
+
 ion-content {
   --background: #327c72;
   position: relative;
+  height: 100vh;
+  overflow: hidden;
+  --padding-start: 0;
+  --padding-end: 0;
+  --padding-top: 0;
+  --padding-bottom: 0;
+}
+
+// Contenedor principal que ocupa toda la pantalla
+.app-container {
   display: flex;
   flex-direction: column;
-  height: 100%;
+  height: 100vh;
+  width: 100vw;
+  padding: 8px;
+  box-sizing: border-box;
+  gap: 10px;
 }
 
-/* Estructura general de controles superiores */
-.header-controls {
+// Controles superiores (logout + idiomas)
+.top-controls {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
-  padding: 20px 0;
+  gap: 5px;
+  height: 12vh; // Reducido de 15vh a 12vh
+  min-height: 60px;
+  max-height: 80px;
 }
 
-/* Botones de idioma */
-.language-buttons {
-  margin-top: -2%;
+// Grilla principal
+.main-grid {
+  display: grid;
+  width: 100%;
+  gap: 5px;
+  flex: 1; // Ocupa el espacio restante
+  min-height: 0; // Permite que flex funcione correctamente
+}
+
+// Controles de temas
+.theme-controls {
   display: flex;
-  gap: 12px;
-  margin-right: 20px;
+  width: 100%;
+  gap: 5px;
+  height: 12vh; // Reducido de 15vh a 12vh
+  min-height: 60px;
+  max-height: 80px;
 }
 
+// Estilos para botones base
+.logout-button,
 .lang-button,
 .tema-button {
   background-color: white;
-  border: none;
-  border-radius: 50%;
-  width: 70px;
-  height: 70px;
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
-  padding: 8px;
-  transition: transform 0.2s ease;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-  }
-
-  &:hover, &:active {
-    transform: scale(1.1);
-  }
-}
-
-/* Botón logout */
-.logout-button {
-  margin-top: -2%;
-  background-color: #d4f4dd;
-  border: 3px solid white;
+  border: 3px solid #ddd;
   border-radius: 12px;
-  width: 70px;
-  height: 70px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: 20px;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  cursor: pointer;
 
   img {
-    width: 40px;
-    height: 40px;
+    width: 70%;
+    height: 70%;
     object-fit: contain;
-    filter: invert(1);
   }
 
-  &:hover, &:active {
-    background-color: #a8e6b1;
-    transform: scale(1.1);
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 }
 
-/* Contenedor principal para centrar la grilla */
-.main-content {
-  display: flex;
-  margin-top: -1%;
-  justify-content: center;
-  align-items: center;
+// Botón de logout (más pequeño)
+.logout-button {
+  flex: 0.7; // Más pequeño que los otros
+  background-color: #b43128;
+  border-color: #f44336;
+
+  &:hover {
+    background-color: #f44336;
+  }
+}
+
+// Botones de idioma
+.lang-button {
   flex: 1;
-  padding: 10px 0px -100px -100px;
+  
+  &.active {
+    background-color: #4caf50;
+    border-color: #2e7d32;
+    
+    img {
+      filter: brightness(1.2);
+    }
+  }
 }
 
-/* Grilla - formato 2x3 optimizado */
-.grid-container {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(120px, 1fr)); /* 2 columnas con tamaño mínimo */
-  grid-auto-rows: minmax(120px, auto); /* Altura mínima de filas */
-  gap: 15px;
-  justify-content: center;
-  background-color: #f8f8f8;
-  padding: 15px;
-  margin: 10px auto;
-  max-width: 90%;
-  border-radius: 16px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+// Botones de tema
+.tema-button {
+  flex: 1;
+  
+  &.active {
+    background-color: #85d888;
+    border-color: #2e7d32;
+    
+    img {
+      filter: brightness(1.2);
+    }
+  }
 }
 
+// Botones de la grilla principal
 .grid-button {
-  width: 100%;
-  min-height: 120px;
-  max-height: 150px;
   background-color: white;
-  border: none;
-  border-radius: 16px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
-  overflow: hidden;
+  border: 3px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.25);
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s ease;
-  margin: 0;
+  cursor: pointer;
 
   img {
     width: 85%;
@@ -120,41 +146,119 @@ ion-content {
     object-fit: contain;
   }
 
-  &:hover, &:active {
+  &:hover {
     transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
   }
 }
 
-/* Controles de temas inferiores */
-.theme-controls {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  // margin: 20px 0;
+// RESPONSIVE DESIGN
+
+// Orientación vertical (portrait)
+@media (orientation: portrait) {
+  .main-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+  }
 }
 
-/* Media queries para asegurar responsividad */
-@media (max-height: 700px) {
-  .grid-container {
-    /* Quitamos la altura fija para permitir que la grilla se ajuste naturalmente */
-    max-height: none;
+// Orientación horizontal (landscape)
+@media (orientation: landscape) {
+  .main-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    // Ahora ocupamos todo el ancho disponible
+    width: 100%;
+    max-width: none;
+  }
+  
+  // Controlamos la altura de los botones de la grilla en landscape
+  .grid-button {
+    // Limitamos la altura máxima para evitar botones muy altos
+    max-height: 25vh;
+    // Las imágenes se adaptan manteniendo proporción
+    img {
+      max-height: 80%;
+      max-width: 80%;
+      object-fit: contain;
+    }
+  }
+  
+  // En horizontal, reducimos las alturas de controles
+  .top-controls,
+  .theme-controls {
+    height: 10vh;
+    min-height: 50px;
+    max-height: 60px;
+  }
+}
+
+// Ajustes para pantallas muy pequeñas
+@media (max-height: 600px) {
+  .app-container {
+    padding: 5px;
+    gap: 8px;
+  }
+  
+  .top-controls,
+  .theme-controls {
+    height: 10vh;
+    min-height: 45px;
+    max-height: 55px;
+  }
+  
+  .main-grid {
+    gap: 4px;
+  }
+  
+  .logout-button,
+  .lang-button,
+  .tema-button,
+  .grid-button {
+    border-width: 2px;
+  }
+  
+  // En pantallas muy pequeñas y landscape, limitamos más la altura
+  @media (orientation: landscape) {
+    .grid-button {
+      max-height: 20vh;
+    }
+  }
+}
+
+// Ajustes para pantallas muy anchas
+@media (min-width: 768px) and (orientation: landscape) {
+  .app-container {
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 10px;
   }
   
-  .lang-button, .tema-button, .logout-button {
-    width: 60px;
-    height: 60px;
+  // En pantallas grandes, permitimos botones un poco más altos
+  .grid-button {
+    max-height: 30vh;
   }
 }
 
-@media (max-width: 480px) {
-  .grid-container {
-    gap: 12px;
-    padding: 12px;
+// Ajustes para dispositivos muy pequeños
+@media (max-width: 360px) {
+  .app-container {
+    padding: 5px;
+    gap: 6px;
   }
   
-  .lang-button, .tema-button, .logout-button {
-    width: 55px;
-    height: 55px;
+  .logout-button,
+  .lang-button,
+  .tema-button,
+  .grid-button {
+    border-radius: 8px;
+    
+    img {
+      width: 60%;
+      height: 60%;
+    }
   }
 }

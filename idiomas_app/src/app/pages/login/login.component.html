@@ -6,7 +6,7 @@
       </ion-card-header>
       
       <ion-card-content>
-        <form [formGroup]="formLogin" (ngSubmit)="login()">
+        <form [formGroup]="loginForm" (ngSubmit)="login()">
           <ion-item class="form-item">
             <ion-label position="floating" style="color: #286259;">Correo Electrónico</ion-label>
             <ion-input 
@@ -15,9 +15,9 @@
               [(ngModel)]="admin_email">
             </ion-input>
           </ion-item>
-          <div class="error-message" *ngIf="formLogin.get('email')?.invalid && formLogin.get('email')?.touched">
-            <span *ngIf="formLogin.get('email')?.errors?.['required']">El correo es requerido</span>
-            <span *ngIf="formLogin.get('email')?.errors?.['email']">Ingrese un correo válido</span>
+          <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            <span *ngIf="loginForm.get('email')?.errors?.['required']">El correo es requerido</span>
+            <span *ngIf="loginForm.get('email')?.errors?.['email']">Ingrese un correo válido</span>
           </div>
           
           <ion-item class="form-item">
@@ -28,9 +28,9 @@
               [(ngModel)]="admin_password">
             </ion-input>
           </ion-item>
-          <div class="error-message" *ngIf="formLogin.get('password')?.invalid && formLogin.get('password')?.touched">
-            <span *ngIf="formLogin.get('password')?.errors?.['required']">La contraseña es requerida</span>
-            <span *ngIf="formLogin.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres</span>
+          <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            <span *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es requerida</span>
+            <span *ngIf="loginForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres</span>
           </div>
           
           <div class="error-container" *ngIf="errorMessage">
@@ -41,7 +41,7 @@
             <ion-button 
               expand="block" 
               type="submit" 
-              [disabled]="formLogin.invalid" 
+              [disabled]="loginForm.invalid" 
               class="login-button">
               Iniciar Sesión
             </ion-button>
@@ -54,7 +54,7 @@
             <ion-button fill="clear" (click)="accesoRapido(1)" class="quick-button">Admin 1</ion-button>
             <ion-button fill="clear" (click)="accesoRapido(2)" class="quick-button">Admin 2</ion-button>
             <ion-button fill="clear" (click)="accesoRapido(3)" class="quick-button">Admin 3</ion-button>
-            <ion-button fill="clear" (click)="accesoRapido(0)" class="quick-button">Limpiar</ion-button>
+            <ion-button fill="clear" (click)="resetForm()" class="quick-button">Limpiar</ion-button>
           </div>
         </div>
       </ion-card-content>

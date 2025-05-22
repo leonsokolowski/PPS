@@ -1,43 +1,62 @@
 <ion-content class="ion-padding" fullscreen>
-  <div class="header-controls">
-    <!-- Botón de logout -->
-    <button class="logout-button" (click)="logout()">
-      <img src="assets/home/logout.png" alt="Logout">
-    </button>
-    
-    <!-- Botones de IDIOMAS ahora alineados horizontalmente en la parte superior -->
-    <div class="language-buttons">
-      <button class="lang-button" (click)="cambiarIdioma('es')">
+  <img src="assets/splash/fondo.png" class="fondo" />
+  
+  <div class="app-container">
+    <!-- Controles superiores -->
+    <div class="top-controls">
+      <!-- Botón de logout -->
+      <button class="logout-button" (click)="logout()">
+        <img src="assets/home/logout.png" alt="Logout">
+      </button>
+      
+      <!-- Botones de idiomas -->
+      <button class="lang-button" 
+              [class.active]="idioma === 'es'"
+              (click)="cambiarIdioma('es')">
         <img src="assets/home/es.png" alt="Español">
       </button>
-      <button class="lang-button" (click)="cambiarIdioma('en')">
+      
+      <button class="lang-button" 
+              [class.active]="idioma === 'en'"
+              (click)="cambiarIdioma('en')">
         <img src="assets/home/en.png" alt="Inglés">
       </button>
-      <button class="lang-button" (click)="cambiarIdioma('pt')">
+      
+      <button class="lang-button" 
+              [class.active]="idioma === 'pt'"
+              (click)="cambiarIdioma('pt')">
         <img src="assets/home/pt.png" alt="Portugués">
       </button>
     </div>
-  </div>
 
-  <!-- Grilla de botones - ahora con formato 2x3 -->
-<div class="main-content">
-  <div class="grid-container">
-    <button *ngFor="let boton of grillaActual" (click)="reproducirSonido(boton)" class="grid-button">
-      <img [src]="boton.imagen" alt="{{ boton.traducciones[idioma] }}">
-    </button>
-  </div>
-</div>
+    <!-- Grilla principal -->
+    <div class="main-grid">
+      <button *ngFor="let boton of grillaActual" 
+              (click)="reproducirSonido(boton)" 
+              class="grid-button">
+        <img [src]="boton.imagen" alt="{{ boton.traducciones[idioma] }}">
+      </button>
+    </div>
 
-  <!-- Botones de TEMAS ahora alineados horizontalmente en la parte inferior -->
-  <div class="theme-controls">
-    <button class="tema-button" (click)="cambiarTema('colores')">
-      <img src="assets/home/colores.png" alt="Colores">
-    </button>
-    <button class="tema-button" (click)="cambiarTema('numeros')">
-      <img src="assets/home/numeros.png" alt="Números">
-    </button>
-    <button class="tema-button" (click)="cambiarTema('animales')">
-      <img src="assets/home/animales.png" alt="Animales">
-    </button>
+    <!-- Botones de temas -->
+    <div class="theme-controls">
+      <button class="tema-button" 
+              [class.active]="tema === 'colores'"
+              (click)="cambiarTema('colores')">
+        <img src="assets/home/colores.png" alt="Colores">
+      </button>
+      
+      <button class="tema-button" 
+              [class.active]="tema === 'numeros'"
+              (click)="cambiarTema('numeros')">
+        <img src="assets/home/numeros.png" alt="Números">
+      </button>
+      
+      <button class="tema-button" 
+              [class.active]="tema === 'animales'"
+              (click)="cambiarTema('animales')">
+        <img src="assets/home/animales.png" alt="Animales">
+      </button>
+    </div>
   </div>
 </ion-content>
