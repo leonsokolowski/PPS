@@ -34,4 +34,13 @@
       <img src="assets/home/logout.png" alt="Logout">
     </button>
   </div>
+
+  <!-- Modal de contraseña -->
+  <app-password-modal
+    [isVisible]="showPasswordModal"
+    [modalTitle]="modalAction === 'deactivate' ? 'Desactivar Alarma' : 'Cerrar Sesión'"
+    [modalMessage]="modalAction === 'deactivate' ? 'Ingrese la contraseña para desactivar la alarma:' : 'Ingrese la contraseña para cerrar sesión:'"
+    (passwordSubmitted)="onPasswordSubmitted($event)"
+    (cancelled)="onPasswordCancelled()"
+  ></app-password-modal>
 </ion-content>
