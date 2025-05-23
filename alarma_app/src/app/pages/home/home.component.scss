@@ -1,86 +1,186 @@
-/* Botón principal */
-.alarm-button {
+// Eliminar padding y margin del ion-content
+.full-screen-content {
+  --padding-top: 0;
+  --padding-bottom: 0;
+  --padding-start: 0;
+  --padding-end: 0;
+  --offset-top: 0;
+  --offset-bottom: 0;
+}
+
+.full-screen-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.full-screen-button {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: #a40c03;
+  width: 100%;
+  height: 100%;
   border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* Ocultamos el texto que se desborda */
-  transition: background-color 0.3s ease; /* Solo cambio de color */
+  
+  // Estados de la alarma
+  &.active {
+    background: linear-gradient(135deg, #ff4757, #ff3838);
+    color: white;
+    animation: pulse 2s infinite;
+  }
+  
+  &.off {
+    background: linear-gradient(135deg, #2f3542, #40414f);
+    color: #a4b0be;
+  }
+  
+  // Efecto hover
+  &:hover {
+    transform: scale(1.02);
+  }
+  
+  &:active {
+    transform: scale(0.98);
+  }
 }
 
-.alarm-button.active {
-  background-color: #c9140a; /* Color cuando está activo */
+.alarm-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem;
+  
+  .alarm-text {
+    font-size: 2.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    
+    // Responsive
+    @media (max-width: 768px) {
+      font-size: 1.8rem;
+      margin-bottom: 1.5rem;
+    }
+    
+    @media (max-width: 480px) {
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+    }
+  }
+  
+  .alarm-icon {
+    margin: 2rem 0;
+    
+    img {
+      width: 150px;
+      height: 150px;
+      object-fit: contain;
+      filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      
+      // Responsive
+      @media (max-width: 768px) {
+        width: 120px;
+        height: 120px;
+      }
+      
+      @media (max-width: 480px) {
+        width: 100px;
+        height: 100px;
+      }
+    }
+  }
+  
+  .alarm-status {
+    font-size: 1.2rem;
+    opacity: 0.8;
+    margin-top: 1rem;
+    
+    @media (max-width: 480px) {
+      font-size: 1rem;
+    }
+  }
 }
 
-.alarm-button img {
-  width: 450px;
-  height: auto;
-  object-fit: contain;
-  transition: filter 0.3s ease; /* Transición solo para el filtro */
-}
-
-.alarm-button.active img {
-  filter: grayscale(0%); /* Icono en color cuando está activo */
-}
-
-.alarm-button.off img {
-  filter: grayscale(100%); /* Icono en escala de grises cuando está desactivado */
-}
-
-/* Texto que aparece detrás del icono */
-.alarm-text {
-  position: absolute;
-  top: 50%;
-  left: 100%;
-  transform: translateY(-50%);
-  white-space: nowrap; /* Evita el salto de línea */
-  font-size: 50px;
-  color: #fff;
-  font-weight: bold;
-  animation: moveText 10s linear infinite; /* Animación de movimiento */
-}
-
-@keyframes moveText {
+// Animación de pulso para alarma activa
+@keyframes pulse {
   0% {
-    left: 100%; /* Comienza fuera de la pantalla, a la derecha */
+    box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(255, 71, 87, 0);
   }
   100% {
-    left: -100%; /* Termina fuera de la pantalla, a la izquierda */
+    box-shadow: 0 0 0 0 rgba(255, 71, 87, 0);
   }
 }
 
-/* Botón de logout */
-.logout-button {
+// Botón de logout flotante
+.floating-logout {
   position: absolute;
   top: 20px;
-  left: 20px;
-  background-color: #a40c03;
-  border: 3px solid white;
+  right: 20px;
+  width: 50px;
+  height: 50px;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  border: none;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 10;
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.5);
-  transition: background-color 0.3s ease, transform 0.3s ease;
+  
+  img {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+  }
+  
+  &:hover {
+    transform: scale(1.1);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+  }
+  
+  &:active {
+    transform: scale(0.95);
+  }
+  
+  // Safe area para dispositivos con notch
+  @supports (padding: max(0px)) {
+    top: max(20px, env(safe-area-inset-top));
+    right: max(20px, env(safe-area-inset-right));
+  }
 }
 
-.logout-button:hover {
-  background-color: #c9140a;
-  transform: scale(1.1);
+// Ocultar scroll bars
+::-webkit-scrollbar {
+  display: none;
 }
 
-.logout-button img {
-  width: 30px;
-  height: 30px;
-  object-fit: contain;
-  filter: invert(1);
+// Prevenir selección de texto
+.full-screen-button {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  
+  -webkit-tap-highlight-color: transparent;
 }

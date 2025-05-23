@@ -29,8 +29,9 @@
             </ion-input>
           </ion-item>
           <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-            <span *ngIf="loginForm.get('password')?.errors?.['required']">La contraseña es requerida</span>
-            <span *ngIf="loginForm.get('password')?.errors?.['minlength']">La contraseña debe tener al menos 8 caracteres</span>
+            <span *ngIf="passwordControl?.errors?.['required']">La contraseña es obligatoria.</span>
+            <span *ngIf="passwordControl?.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+            <span *ngIf="passwordControl?.errors?.['pattern']">Debe contener una mayúscula y un número.</span>
           </div>
           
           <div class="error-container" *ngIf="errorMessage">

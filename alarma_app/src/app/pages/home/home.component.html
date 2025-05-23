@@ -1,18 +1,36 @@
-<ion-content>
-  <div class="container">
+<ion-content [fullscreen]="true" class="full-screen-content">
+  <div class="full-screen-container">
+    <!-- Botón principal que ocupa toda la pantalla -->
     <button 
-      class="alarm-button" 
+      class="alarm-button full-screen-button" 
       [class.active]="activo"
       [class.off]="!activo"
       (click)="toggleAlarma()"
     >
-    <div class="alarm-text" *ngIf="activo">ALARMA ACTIVADA - ALARMA ACTIVADA</div> <!-- Texto que aparece cuando 'activo' es true -->
-    <div class="alarm-text" *ngIf="!activo">ALARMA DESACTIVADA - ALARMA DESACTIVADA</div> <!-- Texto que aparece cuando 'activo' es true -->
-    <img *ngIf="activo" src="assets/home/icono.png" alt="Alarma" />
-    <img *ngIf="!activo" src="assets/home/icono_apagado.png" alt="Alarma" />
+      <div class="alarm-content">
+        <div class="alarm-text" *ngIf="activo">
+          ALARMA ACTIVADA
+        </div>
+        <div class="alarm-text" *ngIf="!activo">
+          ALARMA DESACTIVADA
+        </div>
+        
+        <div class="alarm-icon">
+          <img *ngIf="activo" src="assets/home/icono.png" alt="Alarma Activada" />
+          <img *ngIf="!activo" src="assets/home/icono_apagado.png" alt="Alarma Desactivada" />
+        </div>
+        
+        <div class="alarm-status" *ngIf="activo">
+          Toque para desactivar
+        </div>
+        <div class="alarm-status" *ngIf="!activo">
+          Toque para activar
+        </div>
+      </div>
     </button>
 
-    <button class="logout-button" (click)="logout()">
+    <!-- Botón de logout flotante en la esquina -->
+    <button class="logout-button floating-logout" (click)="logout()">
       <img src="assets/home/logout.png" alt="Logout">
     </button>
   </div>

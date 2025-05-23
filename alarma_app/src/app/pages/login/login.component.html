@@ -1,4 +1,5 @@
 <ion-content [fullscreen]="true" class="ion-padding">
+<img src="assets/splash/fondo.png" class="fondo" />
   <div class="center-container">
     <ion-card>
       <ion-card-header>
@@ -6,16 +7,25 @@
       </ion-card-header>
       
       <ion-card-content>
-        <form [formGroup]="formLogin">
+        <form [formGroup]="loginForm">
           <ion-item>
             <ion-label position="floating">Correo</ion-label>
             <ion-input [(ngModel)]="admin_email" type="email" formControlName="email"></ion-input>
           </ion-item>
+          <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+            <span *ngIf="loginForm.get('email')?.errors?.['required']">El correo es requerido</span>
+            <span *ngIf="loginForm.get('email')?.errors?.['email']">Ingrese un correo válido</span>
+          </div>
           
           <ion-item>
             <ion-label position="floating">Contraseña</ion-label>
             <ion-input [(ngModel)]="admin_password" type="password" formControlName="password"></ion-input>
           </ion-item>
+          <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+            <span *ngIf="passwordControl?.errors?.['required']">La contraseña es obligatoria.</span>
+            <span *ngIf="passwordControl?.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+            <span *ngIf="passwordControl?.errors?.['pattern']">Debe contener una mayúscula y un número.</span>
+          </div>
 
           <div class="error-msg" *ngIf="errorMessage">
             {{ errorMessage }}
