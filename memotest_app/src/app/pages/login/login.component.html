@@ -41,8 +41,8 @@
           </div>
           <div class="validation-message" *ngIf="passwordControl?.invalid && passwordControl?.touched">
             <span *ngIf="passwordControl?.errors?.['required']">La contraseña es obligatoria.</span>
-              <span *ngIf="passwordControl?.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
-              <span *ngIf="passwordControl?.errors?.['pattern']">Debe contener una mayúscula y un número.</span>
+            <span *ngIf="passwordControl?.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+            <span *ngIf="passwordControl?.errors?.['pattern']">Debe contener una mayúscula y un número.</span>
           </div>
         </div>
         

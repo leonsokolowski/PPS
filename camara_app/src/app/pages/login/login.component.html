@@ -4,16 +4,25 @@
       <h1 class="title">CamaraApp</h1>
       <p class="subtitle">Iniciá sesión para continuar</p>
 
-      <form [formGroup]="formLogin">
+      <form [formGroup]="loginForm">
         <ion-item class="input-item">
           <ion-label position="floating">Correo</ion-label>
           <ion-input [(ngModel)]="admin_email" type="email" formControlName="email"></ion-input>
         </ion-item>
+        <div class="validation-message" *ngIf="emailControl?.invalid && emailControl?.touched">
+            <span *ngIf="emailControl?.errors?.['required']">El correo electrónico es obligatorio.</span>
+            <span *ngIf="emailControl?.errors?.['email']">Ingrese un correo válido.</span>
+        </div>
 
         <ion-item class="input-item">
           <ion-label position="floating">Contraseña</ion-label>
           <ion-input [(ngModel)]="admin_password" type="password" formControlName="password"></ion-input>
         </ion-item>
+        <div class="validation-message" *ngIf="passwordControl?.invalid && passwordControl?.touched">
+            <span *ngIf="passwordControl?.errors?.['required']">La contraseña es obligatoria.</span>
+            <span *ngIf="passwordControl?.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+            <span *ngIf="passwordControl?.errors?.['pattern']">Debe contener una mayúscula y un número.</span>
+        </div>
 
         <div class="error-msg" *ngIf="errorMessage">
           {{ errorMessage }}
@@ -28,7 +37,7 @@
         <ion-button fill="outline" (click)="accesoRapido(3)">Acceso 3</ion-button>
       </div>
 
-      <ion-button fill="clear" class="clear-btn" (click)="accesoRapido(0)">Borrar</ion-button>
+      <ion-button fill="clear" class="clear-btn" (click)="resetForm()">Borrar</ion-button>
     </div>
   </div>
 </ion-content>

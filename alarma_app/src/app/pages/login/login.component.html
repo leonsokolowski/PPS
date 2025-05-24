@@ -1,6 +1,8 @@
 <ion-content [fullscreen]="true" class="ion-padding">
-<img src="assets/splash/fondo.png" class="fondo" />
-  <div class="center-container">
+  <img src="assets/splash/fondo.png" class="fondo" />
+  
+  <div class="main-container">
+    <!-- Tarjeta de login -->
     <ion-card>
       <ion-card-header>
         <ion-card-title class="ion-text-center">Iniciar Sesión</ion-card-title>
@@ -36,19 +38,16 @@
               Ingresar
             </ion-button>
           </div>
-
         </form>
       </ion-card-content>
     </ion-card>
-    <div style="margin-top: 10px; display: flex; gap: 10px; justify-content: center;">
-      <ion-button class="custom-button" (click)="accesoRapido(1)">Acceso rápido 1</ion-button>
-      <ion-button class="custom-button" (click)="accesoRapido(2)">Acceso rápido 2</ion-button>
-      <ion-button class="custom-button" (click)="accesoRapido(3)">Acceso rápido 3</ion-button>
-    </div>
-    <div style="margin-top: 10px; display: flex; gap: 10px; justify-content: center;">
-      <ion-button class="custom-button" (click)="accesoRapido(0)">Borrar</ion-button>
+
+    <!-- Botones de acceso rápido en columna -->
+    <div class="quick-access-buttons">
+      <ion-button class="access-button" (click)="accesoRapido(1)">A1</ion-button>
+      <ion-button class="access-button" (click)="accesoRapido(2)">A2</ion-button>
+      <ion-button class="access-button" (click)="accesoRapido(3)">A3</ion-button>
+      <ion-button class="delete-button" (click)="resetForm()">🗑️</ion-button>
     </div>
   </div>
-  
 </ion-content>
-

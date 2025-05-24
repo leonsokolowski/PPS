@@ -22,35 +22,61 @@ ion-content {
   color: #333;
   font-weight: bold;
   transition: background-color 0.3s ease, transform 0.3s ease;
+  position: relative;
+  
+  // Configuración para el background image
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  // Overlay para mejorar legibilidad del texto si fuera necesario
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.1); // Overlay sutil
+    transition: background 0.3s ease;
+  }
 
-  img {
-    width: 60%;
-    height: auto;
-    max-height: 60%;
-    object-fit: contain;
+  // Asegurar que el contenido esté por encima del overlay
+  * {
+    position: relative;
+    z-index: 1;
   }
 
   span {
     margin-top: 10px;
     font-size: 1.2rem;
     font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3); // Sombra para mejor legibilidad
   }
 }
 
 .big-button.top {
-  background-color: #d4f4dd;
-}
-.big-button.top:hover {
-  background-color: #a8e6b1;
-  transform: scale(1.02);
+  background-image: url('/assets/home/lindo.png');
+  
+  &:hover {
+    transform: scale(1.02);
+    
+    &::before {
+      background: rgba(212, 244, 221, 0.3); // Overlay verde claro en hover
+    }
+  }
 }
 
 .big-button.bottom {
-  background-color: #fddddd;
-}
-.big-button.bottom:hover {
-  background-color: #f5aaaa;
-  transform: scale(1.02);
+  background-image: url('/assets/home/feo.png');
+  
+  &:hover {
+    transform: scale(1.02);
+    
+    &::before {
+      background: rgba(253, 221, 221, 0.3); // Overlay rosa claro en hover
+    }
+  }
 }
 
 .logout-button {
@@ -74,7 +100,6 @@ ion-content {
     width: 40px;
     height: 40px;
     object-fit: contain;
-    // filter: invert(1);
   }
 }
 

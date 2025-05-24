@@ -1,7 +1,14 @@
 <ion-content class="ion-padding">
   <div class="lluvia-billetes">
-    <img *ngFor="let n of billetes" src="assets/home/billete.png" class="billete" />
+    <img
+      *ngFor="let n of billetes"
+      src="assets/home/billete.png"
+      class="billete"
+    />
   </div>
+
+  <!-- Badge de perfil admin -->
+  <div *ngIf="perfil === 'admin'" class="perfil-badge">ADMIN</div>
 
   <div class="home-container">
     <h1>Bienvenido, {{ auth.usuario_actual?.email }}</h1>
@@ -11,21 +18,81 @@
         <ion-card-title>Créditos Acumulados</ion-card-title>
       </ion-card-header>
       <ion-card-content>
-        <h2>{{ creditos }}</h2>
+        <h2>
+          <span *ngIf="cargandoCreditos" class="loading-spinner"></span>
+          {{ creditos }}
+        </h2>
       </ion-card-content>
     </ion-card>
 
-    <ion-button color="success-custom" expand="block" (click)="escanearQR()">Escanear QR</ion-button>
-
-    <ion-button expand="block" color="danger-custom" (click)="limpiarCreditos()">
-      Limpiar Créditos
-    </ion-button>
-
-    <ion-button color="medium" expand="block" (click)="logout()">Cerrar sesión</ion-button>
-
-    <div color="medium">
+    <!-- Mensaje de estado -->
+    <div
+      *ngIf="mensaje"
+      class="mensaje-estado"
+      [ngClass]="{
+        loading: cargandoCreditos || escaneando,
+        success:
+          mensaje.includes('Crédito cargado') ||
+          mensaje.includes('limpiados correctamente'),
+        error:
+          mensaje.includes('Error') ||
+          mensaje.includes('no válido') ||
+          mensaje.includes('ya fue cargado')
+      }"
+    >
       <p>{{ mensaje }}</p>
     </div>
 
+    <ion-button
+      color="success-custom"
+      expand="block"
+      (click)="escanearQR()"
+      [disabled]="escaneando || cargandoCreditos"
+    >
+      <span *ngIf="escaneando" class="loading-spinner"></span>
+      {{ escaneando ? "Escaneando..." : "Escanear QR" }}
+    </ion-button>
+
+    <ion-button
+      color="medium"
+      expand="block"
+      (click)="logout()"
+      [disabled]="escaneando"
+    >
+      Cerrar sesión
+    </ion-button>
+    <ion-button
+      expand="block"
+      color="danger-custom"
+      class="btn-limpiar-creditos"
+      (click)="limpiarCreditos()"
+      [disabled]="escaneando || cargandoCreditos || creditos === 0"
+    >
+      🗑️$
+    </ion-button>
+    
   </div>
 </ion-content>
+
+<!-- Diálogo personalizado para limpiar créditos -->
+<div *ngIf="mostrarDialogoLimpiar" class="dialogo-overlay">
+  <div class="dialogo-container">
+    <div class="dialogo-header">
+      <h3>⚠️ Confirmar Acción</h3>
+    </div>
+    <div class="dialogo-content">
+      <p>¿Está seguro que desea limpiar todos sus créditos?</p>
+      <p class="dialogo-advertencia">Esta acción no se puede deshacer.</p>
+      <div class="creditos-info">
+        <span class="creditos-cantidad">{{ creditos }}</span>
+        <span class="creditos-texto">créditos serán eliminados</span>
+      </div>
+    </div>
+    <div class="dialogo-botones">
+      <button class="btn-cancelar" (click)="cerrarDialogo()">Cancelar</button>
+      <button class="btn-confirmar" (click)="ejecutarLimpiezaCreditos()">
+        Confirmar
+      </button>
+    </div>
+  </div>
+</div>

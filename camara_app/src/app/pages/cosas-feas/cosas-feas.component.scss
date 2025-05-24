@@ -1,0 +1,201 @@
+// Botones fijos en la parte superior
+.botones-fijos {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: #f5f5dc; // Fondo beige
+  padding: 16px;
+  border-bottom: 1px solid #e0e0e0;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+  ion-button {
+    margin-bottom: 8px;
+    --border-radius: 12px;
+    font-weight: 600;
+    --background: #f5f5dc; // Fondo beige para botones
+    --color: #fc7d7d; // Color del texto en tono coral suave
+    --border-color: #fc7d7d; // Color del borde
+    
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    // Para botones con fill="outline"
+    &[fill="outline"] {
+      --color: #fc7d7d;
+      --border-color: #fc7d7d;
+      --background: transparent;
+      
+      &:hover {
+        --background: #f5f5dc;
+      }
+    }
+  }
+}
+
+ion-content {
+  --background: #ffe09e; /* Fondo general detrás de los botones */
+}
+
+// Área de contenido scrolleable
+.contenido-scroll {
+  padding: 0 16px 16px 16px;
+}
+
+// Centrado para spinner y mensajes
+.centro {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 16px;
+  text-align: center;
+}
+
+// Estilos de las cards
+ion-card {
+  margin: 16px 0;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  overflow: hidden;
+  
+  &:first-child {
+    margin-top: 8px;
+  }
+}
+
+// Header de la card con info del usuario
+.card-header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 0;
+}
+
+.usuario-info {
+  display: flex;
+  align-items: center;
+  flex: 1;
+}
+
+.avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #fc7d7d, #fd7e14); // Gradiente con coral suave
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  font-size: 14px;
+  margin-right: 12px;
+  flex-shrink: 0;
+}
+
+.usuario-datos {
+  flex: 1;
+  min-width: 0; // Para permitir que el texto se trunque
+
+  ion-card-title {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: white; // Color blanco para el nombre del usuario
+    
+    // Truncar email largo
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  small {
+    font-size: 12px;
+  }
+}
+
+// Contenedor de votos
+.votos-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-left: 12px;
+  
+  ion-button {
+    margin: 0;
+    --padding-start: 8px;
+    --padding-end: 8px;
+    --color: #fc7d7d; // Color coral suave para el ícono de voto
+    
+    ion-icon {
+      font-size: 24px;
+    }
+  }
+  
+  .votos-count {
+    font-size: 14px;
+    font-weight: 600;
+    color: #666;
+    margin-top: 4px;
+  }
+}
+
+// Contenedor de imagen
+.imagen-container {
+  margin-top: 12px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #f8f9fa;
+  
+  ion-img {
+    width: 100%;
+    height: auto;
+    min-height: 200px;
+    object-fit: cover;
+  }
+}
+
+// Responsive adjustments
+@media (max-width: 768px) {
+  .botones-fijos {
+    padding: 12px;
+  }
+  
+  .contenido-scroll {
+    padding: 0 8px 16px 8px;
+  }
+  
+  ion-card {
+    margin: 12px 0;
+  }
+  
+  .usuario-datos ion-card-title {
+    font-size: 14px;
+  }
+  
+  .avatar {
+    width: 36px;
+    height: 36px;
+    font-size: 12px;
+  }
+}
+
+// Estados de los botones
+ion-button[disabled] {
+  opacity: 0.6;
+}
+
+// Animación suave para las cards
+ion-card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+  }
+}
+
+// Estilo del toast
+ion-toast {
+  --border-radius: 12px;
+}

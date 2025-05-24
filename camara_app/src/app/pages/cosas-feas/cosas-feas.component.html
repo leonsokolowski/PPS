@@ -1,0 +1,108 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="--background: #fd5d5d; --color: white;">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="volver()" default-href="/home" style="--color: white;"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Cosas FEAS del edificio</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <!-- Botones fijos en la parte superior -->
+  <div class="botones-fijos">
+    <ion-button 
+      expand="block" 
+      fill="solid"
+      style="--background: #fd5d5d; --color: white;"
+      (click)="tomarFoto()" 
+      [disabled]="subiendoFoto">
+      <ion-icon name="camera" slot="start"></ion-icon>
+      {{ subiendoFoto ? 'Subiendo...' : 'Tomar Foto' }}
+    </ion-button>
+    
+    <ion-button 
+      expand="block" 
+      fill="outline" 
+      style="--color: #fd5d5d; --border-color: #fd5d5d; --background: transparent;"
+      (click)="verGraficos()">
+      <ion-icon name="bar-chart" slot="start"></ion-icon>
+      Ver Estadísticas
+    </ion-button>
+  </div>
+
+  <!-- Área de contenido scrolleable -->
+  <div class="contenido-scroll">
+    <!-- Spinner de carga -->
+    <div *ngIf="cargando" class="centro">
+      <ion-spinner name="crescent" style="--color: #fd5d5d;"></ion-spinner>
+      <ion-text color="medium">
+        <p>Cargando fotos...</p>
+      </ion-text>
+    </div>
+
+    <!-- Lista de fotos -->
+    <ion-grid *ngIf="!cargando">
+      <ion-row>
+        <ion-col size="12" *ngFor="let foto of fotos">
+          <ion-card>
+            <ion-card-header>
+              <div class="card-header-content">
+                <div class="usuario-info">
+                  <div class="avatar">
+                    {{ obtenerIniciales(foto.usuario_email) }}
+                  </div>
+                  <div class="usuario-datos">
+                    <ion-card-title>{{ foto.usuario_email }}</ion-card-title>
+                    <ion-text color="medium">
+                      <small>{{ formatearFecha(foto.fecha_creacion) }}</small>
+                    </ion-text>
+                  </div>
+                </div>
+                <div class="votos-container">
+                  <ion-button 
+                    fill="clear" 
+                    style="--color: #fd5d5d;"
+                    (click)="votarFoto(foto)"
+                    [disabled]="fotosVotadas.has(foto.id)">
+                    <ion-icon 
+                      [name]="fotosVotadas.has(foto.id) ? 'thumbs-down' : 'thumbs-down-outline'"
+                      slot="icon-only">
+                    </ion-icon>
+                  </ion-button>
+                  <span class="votos-count">{{ foto.votos }}</span>
+                </div>
+              </div>
+            </ion-card-header>
+            
+            <ion-card-content>
+              <div class="imagen-container">
+                <ion-img 
+                  [src]="foto.imagen_url" 
+                  [alt]="'Foto fea del edificio por ' + foto.usuario_email">
+                </ion-img>
+              </div>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+      
+      <!-- Mensaje cuando no hay fotos -->
+      <ion-row *ngIf="fotos.length === 0 && !cargando">
+        <ion-col size="12" class="centro">
+          <ion-text color="medium">
+            <h3>¡Sé el primero en documentar algo feo!</h3>
+            <p>Toca el botón "Tomar Foto" para comenzar</p>
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- Toast para mensajes -->
+  <ion-toast
+    [isOpen]="mostrarToast"
+    [message]="mensajeToast"
+    [duration]="3000"
+    (didDismiss)="mostrarToast = false">
+  </ion-toast>
+</ion-content>

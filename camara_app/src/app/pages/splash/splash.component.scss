@@ -42,7 +42,7 @@
   top: 48%; /* Bajamos un poco más la cámara */
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 200px; /* Cámara más grande */
+  width: 320px; /* Cámara más grande */
   height: auto;
   opacity: 0;
   animation: aparecerIcono 1s ease-out 0s forwards; /* Aparece de inmediato */
@@ -52,7 +52,7 @@
 /* Nombre */
 .titulo {
   position: absolute;
-  top: 32%;
+  top: 5%;
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;
@@ -61,11 +61,33 @@
   animation: entrarTitulo 1s ease-out 3.5s forwards; /* Aparece después del primer flash */
   z-index: 4;
 }
+.subtitulo {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  width: 400px;
+  height: auto;
+  animation: entrarTitulo 1s ease-out 3.5s forwards; /* Aparece después del primer flash */
+  z-index: 4;
+}
 
+.materia {
+  position: absolute;
+  top: 60%;
+  left: 50%;
+  transform: translateX(-50%);
+  opacity: 0;
+  width: 300px;
+  height: auto;
+  animation: entrarDivision 1s ease-out 5.5s forwards; /* Aparece después del segundo flash */
+  z-index: 4;
+}
 /* División */
 .division {
   position: absolute;
-  top: 58%;
+  top: 76%;
   left: 50%;
   transform: translateX(-50%);
   opacity: 0;

@@ -8,6 +8,14 @@
   font-family: 'Quicksand', sans-serif;
 }
 
+.validation-message {
+  color: #e16577;
+  font-size: 13px;
+  margin-top: 6px;
+  padding-left: 5px;
+  line-height: 1.2;
+}
+
 .login-wrapper {
   display: flex;
   justify-content: center;

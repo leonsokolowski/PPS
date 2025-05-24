@@ -1,0 +1,65 @@
+<ion-header [translucent]="true">
+  <ion-toolbar style="--background: #98ff84; --color: #2d5a2d;">
+    <ion-buttons slot="start">
+      <ion-back-button (click)="volver()" default-href="/cosas-lindas" style="--color: #2d5a2d;"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Estadísticas - Cosas Lindas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="container">
+    
+    <!-- Spinner de carga -->
+    <div *ngIf="cargando" class="centro">
+      <ion-spinner name="crescent" style="--color: #2d5a2d;"></ion-spinner>
+      <ion-text color="medium">
+        <p>Cargando estadísticas...</p>
+      </ion-text>
+    </div>
+
+    <!-- Contenido cuando hay datos -->
+    <div *ngIf="!cargando && datosEstadisticas">
+      
+      <!-- Cards con estadísticas generales -->
+      <div class="estadisticas-cards">
+        <ion-card class="stat-card">
+          <ion-card-content>
+            <div class="stat-content">
+              <div class="stat-number">{{ totalFotos }}</div>
+              <div class="stat-label">Fotos Subidas</div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+
+        <ion-card class="stat-card">
+          <ion-card-content>
+            <div class="stat-content">
+              <div class="stat-number">{{ totalVotos }}</div>
+              <div class="stat-label">Votos Totales</div>
+            </div>
+          </ion-card-content>
+        </ion-card>
+      </div>
+
+      <!-- Gráfico de torta -->
+      <ion-card class="chart-card">
+        <ion-card-header>
+          <ion-card-title>Gráfico de Torta - Distribución de Votos</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+          <div class="chart-container">
+            <canvas #chartCanvas></canvas>
+          </div>
+        </ion-card-content>
+      </ion-card>
+
+    </div>
+
+    <!-- Mensaje cuando no hay datos -->
+    <div *ngIf="!cargando && !datosEstadisticas" class="centro">
+      <ion-text color="medium" class="texto-centrado">
+        <h3>¡Aún no hay fotos para mostrar!</h3>
+        <p>Cuando los usuarios suban fotos lindas y las voten, aparecerán las estadísticas aquí.</p>
+      </ion-text>
+  </div>

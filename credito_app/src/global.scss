@@ -35,3 +35,89 @@
 /* @import "@ionic/angular/css/palettes/dark.always.css"; */
 /* @import "@ionic/angular/css/palettes/dark.class.css"; */
 @import '@ionic/angular/css/palettes/dark.system.css';
+
+// Estilos globales para el barcode scanner
+// Estilos globales para el barcode scanner
+body.scanner-active {
+  --background: transparent !important;
+  background: transparent !important;
+  
+  ion-app {
+    display: none !important;
+  }
+}
+
+// Asegurar que el scanner tenga fondo completo
+.barcode-scanner-modal {
+  background: transparent !important;
+  
+  .scanner-ui {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 999999;
+    background: rgba(0, 0, 0, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .scanner-instructions {
+      color: white;
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 20px;
+      padding: 0 20px;
+    }
+    
+    .scanner-frame {
+      width: 250px;
+      height: 250px;
+      border: 2px solid #28a745;
+      border-radius: 12px;
+      position: relative;
+      
+      &::before,
+      &::after {
+        content: '';
+        position: absolute;
+        width: 30px;
+        height: 30px;
+        border: 3px solid #28a745;
+      }
+      
+      &::before {
+        top: -3px;
+        left: -3px;
+        border-right: none;
+        border-bottom: none;
+      }
+      
+      &::after {
+        bottom: -3px;
+        right: -3px;
+        border-left: none;
+        border-top: none;
+      }
+    }
+    
+    .scanner-cancel {
+      position: absolute;
+      bottom: 80px;
+      background: rgba(255, 255, 255, 0.9);
+      color: #000;
+      padding: 12px 24px;
+      border-radius: 25px;
+      border: none;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      
+      &:hover {
+        background: rgba(255, 255, 255, 1);
+      }
+    }
+  }
+}

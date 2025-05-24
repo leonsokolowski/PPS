@@ -1,12 +1,13 @@
 <div class="splash-container">
   <img src="assets/splash/fondo.png" class="fondo" />
-
-
-  <div class="flecha-mask">
-    <img src="assets/splash/flecha_v.png" class="flecha" />
+  <div class="lluvia-billetes">
+    <img *ngFor="let n of billetes" src="assets/home/billete.png" class="billete" />
   </div>
+
 
   <img src="assets/splash/icono.png" class="icono" />
   <img src="assets/splash/nombre.png" class="titulo" />
+  <img src="assets/splash/apellido.png" class="subtitulo" />
+  <img src="assets/splash/materia.png" class="materia" />
   <img src="assets/splash/division.png" class="division" />
 </div>

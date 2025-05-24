@@ -1,64 +1,102 @@
-<ion-content class="login-container">
-  <div class="login-form-container">
-    <ion-card class="login-card">
-      <ion-card-header>
-        <ion-card-title class="login-title">Iniciar Sesión</ion-card-title>
-      </ion-card-header>
-      
-      <ion-card-content>
-        <form [formGroup]="loginForm" (ngSubmit)="login()">
-          <ion-item class="form-item">
-            <ion-label position="floating" style="color: #286259;">Correo Electrónico</ion-label>
-            <ion-input 
-              type="email" 
-              formControlName="email"
-              [(ngModel)]="admin_email">
-            </ion-input>
-          </ion-item>
-          <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
-            <span *ngIf="loginForm.get('email')?.errors?.['required']">El correo es requerido</span>
-            <span *ngIf="loginForm.get('email')?.errors?.['email']">Ingrese un correo válido</span>
-          </div>
-          
-          <ion-item class="form-item">
-            <ion-label position="floating" style="color: #286259;">Contraseña</ion-label>
-            <ion-input 
-              type="password" 
-              formControlName="password"
-              [(ngModel)]="admin_password">
-            </ion-input>
-          </ion-item>
-          <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
-            <span *ngIf="passwordControl?.errors?.['required']">La contraseña es obligatoria.</span>
-            <span *ngIf="passwordControl?.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
-            <span *ngIf="passwordControl?.errors?.['pattern']">Debe contener una mayúscula y un número.</span>
-          </div>
-          
-          <div class="error-container" *ngIf="errorMessage">
-            <p class="server-error">{{ errorMessage }}</p>
-          </div>
-          
-          <div class="button-container">
-            <ion-button 
-              expand="block" 
-              type="submit" 
-              [disabled]="loginForm.invalid" 
-              class="login-button">
-              Iniciar Sesión
-            </ion-button>
-          </div>
-        </form>
+<ion-content class="login-container" [scrollY]="false">
+  <div class="login-main-wrapper">
+    <!-- Formulario principal -->
+    <div class="login-form-container">
+      <ion-card class="login-card">
+        <ion-card-header>
+          <ion-card-title class="login-title">Iniciar Sesión</ion-card-title>
+        </ion-card-header>
         
-        <div class="quick-access">
-          <p class="quick-access-title">Acceso Rápido</p>
-          <div class="quick-buttons">
-            <ion-button fill="clear" (click)="accesoRapido(1)" class="quick-button">Admin 1</ion-button>
-            <ion-button fill="clear" (click)="accesoRapido(2)" class="quick-button">Admin 2</ion-button>
-            <ion-button fill="clear" (click)="accesoRapido(3)" class="quick-button">Admin 3</ion-button>
-            <ion-button fill="clear" (click)="resetForm()" class="quick-button">Limpiar</ion-button>
+        <ion-card-content>
+          <form [formGroup]="loginForm" (ngSubmit)="login()">
+            <ion-item class="form-item">
+              <ion-label position="floating" style="color: #286259;">Correo Electrónico</ion-label>
+              <ion-input 
+                type="email" 
+                formControlName="email"
+                [(ngModel)]="admin_email"
+                inputmode="email"
+                autocomplete="email">
+              </ion-input>
+            </ion-item>
+            <div class="error-message" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">
+              <span *ngIf="loginForm.get('email')?.errors?.['required']">El correo es requerido</span>
+              <span *ngIf="loginForm.get('email')?.errors?.['email']">Ingrese un correo válido</span>
+            </div>
+            
+            <ion-item class="form-item">
+              <ion-label position="floating" style="color: #286259;">Contraseña</ion-label>
+              <ion-input 
+                type="password" 
+                formControlName="password"
+                [(ngModel)]="admin_password"
+                autocomplete="current-password">
+              </ion-input>
+            </ion-item>
+            <div class="error-message" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              <span *ngIf="passwordControl?.errors?.['required']">La contraseña es obligatoria.</span>
+              <span *ngIf="passwordControl?.errors?.['minlength']">Debe tener al menos 6 caracteres.</span>
+              <span *ngIf="passwordControl?.errors?.['pattern']">Debe contener una mayúscula y un número.</span>
+            </div>
+            
+            <div class="error-container" *ngIf="errorMessage">
+              <p class="server-error">{{ errorMessage }}</p>
+            </div>
+            
+            <div class="button-container">
+              <ion-button 
+                expand="block" 
+                type="submit" 
+                [disabled]="loginForm.invalid" 
+                class="login-button">
+                Iniciar Sesión
+              </ion-button>
+            </div>
+          </form>
+          
+          <!-- Acceso rápido para orientación vertical -->
+          <div class="quick-access">
+            <p class="quick-access-title">Acceso Rápido</p>
+            <div class="quick-buttons">
+              <ion-button fill="clear" (click)="accesoRapido(1)" class="quick-button">Admin 1</ion-button>
+              <ion-button fill="clear" (click)="accesoRapido(2)" class="quick-button">Admin 2</ion-button>
+              <ion-button fill="clear" (click)="accesoRapido(3)" class="quick-button">Admin 3</ion-button>
+              <ion-button fill="clear" (click)="resetForm()" class="quick-button">Limpiar</ion-button>
+            </div>
           </div>
-        </div>
-      </ion-card-content>
-    </ion-card>
+        </ion-card-content>
+      </ion-card>
+    </div>
+    
+    <!-- Sidebar de acceso rápido para orientación horizontal - PEGADO a la tarjeta -->
+    <div class="quick-access-sidebar">
+      <h3 class="sidebar-title">Acceso Rápido</h3>
+      <div class="sidebar-buttons">
+        <ion-button 
+          fill="outline" 
+          (click)="accesoRapido(1)" 
+          class="sidebar-button">
+          Administrador 1
+        </ion-button>
+        <ion-button 
+          fill="outline" 
+          (click)="accesoRapido(2)" 
+          class="sidebar-button">
+          Administrador 2
+        </ion-button>
+        <ion-button 
+          fill="outline" 
+          (click)="accesoRapido(3)" 
+          class="sidebar-button">
+          Administrador 3
+        </ion-button>
+        <ion-button 
+          fill="outline" 
+          (click)="resetForm()" 
+          class="sidebar-button clear-button">
+          Limpiar Formulario
+        </ion-button>
+      </div>
+    </div>
   </div>
 </ion-content>

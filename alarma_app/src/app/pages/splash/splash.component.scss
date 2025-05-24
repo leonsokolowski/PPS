@@ -14,7 +14,7 @@
   
     .ladron, .policia {
       position: absolute;
-      bottom: 15%;
+      bottom: 10%;
       width: 150px;
       height: auto;
       z-index: 2;
@@ -22,43 +22,64 @@
     
     .ladron {
       left: -100px;
-      animation: moverLadron 5s ease-out forwards;
-    }
-  
-    .icono {
-      position: absolute;
-      top: 48%; // MÁS CERCA DE LA DIVISIÓN
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 150px;
-      height: auto;
-      opacity: 0;
-      animation: aparecerIcono 2s ease-out 3s forwards;
-      z-index: 3;
+      animation: moverLadron 4s ease-out forwards;
     }
   
     .policia {
       left: -150px;
       animation: moverPolicia 3s ease-out 4.5s forwards;
     }
-  
-    .titulo {
+
+    // Elementos apilados verticalmente
+    .nombre {
       position: absolute;
-      top: 32%; // MÁS CERCA DEL ICONO
-      left: -320px;
-      width: 320px; // MÁS GRANDE TODAVÍA
+      top: 2%; // Bien arriba de la pantalla
+      left: -250px;
+      width: 240px; // Más chico
       height: auto;
-      animation: entrarTitulo 1s ease-out 8s forwards;
+      animation: entrarElemento 1s ease-out 8s forwards;
+      z-index: 4;
+    }
+
+    .apellido {
+      position: absolute;
+      top: 16%; // Un poco más abajo
+      left: -360px;
+      width: 350px; // Más grande
+      height: auto;
+      animation: entrarElemento 1s ease-out 8.2s forwards;
+      z-index: 4;
+    }
+  
+    .icono {
+      position: absolute;
+      top: 47%; // Bien centrado verticalmente
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 360px; // Más grande
+      height: auto;
+      opacity: 0;
+      animation: aparecerIcono 2s ease-out 3s forwards;
+      z-index: 3;
+    }
+
+    .materia {
+      position: absolute;
+      top: 65%; // Un poco más abajo del icono
+      left: -250px;
+      width: 240px; // Más chico
+      height: auto;
+      animation: entrarElemento 1s ease-out 8.4s forwards;
       z-index: 4;
     }
   
     .division {
       position: absolute;
-      top: 58%; // SUBIMOS para acercarlo aún más
+      top: 80%; // Bien al pie de la pantalla
       left: -300px;
-      width: 180px;
+      width: 170px;
       height: auto;
-      animation: entrarDivision 1s ease-out 8s forwards;
+      animation: entrarElemento 1s ease-out 8.6s forwards;
       z-index: 4;
     }
   }
@@ -83,17 +104,9 @@
     }
   }
   
-  @keyframes entrarTitulo {
+  @keyframes entrarElemento {
     to {
       left: 50%;
       transform: translateX(-50%);
     }
   }
-  
-  @keyframes entrarDivision {
-    to {
-      left: 50%;
-      transform: translateX(-50%);
-    }
-  }
-  
