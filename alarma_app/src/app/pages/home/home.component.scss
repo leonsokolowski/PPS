@@ -34,7 +34,7 @@
   
   // Estados de la alarma
   &.active {
-    background: linear-gradient(135deg, #ff4757, #ff3838);
+    background: linear-gradient(135deg, #c0392b, #a93226); // Rojo más oscuro
     color: white;
     animation: pulse 2s infinite;
   }
@@ -61,53 +61,71 @@
   justify-content: center;
   text-align: center;
   padding: 2rem;
+  position: relative;
   
   .alarm-text {
-    font-size: 2.5rem;
+    font-size: 4rem;
     font-weight: bold;
     text-transform: uppercase;
     letter-spacing: 2px;
     margin-bottom: 2rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: 20%;
+    left: 0;
+    width: 100%;
+    white-space: nowrap;
+    z-index: 1; // Detrás del icono
+    
+    // Animación de texto deslizante
+    animation: slideText 6s linear infinite;
     
     // Responsive
     @media (max-width: 768px) {
-      font-size: 1.8rem;
-      margin-bottom: 1.5rem;
+      font-size: 3rem;
     }
     
     @media (max-width: 480px) {
-      font-size: 1.4rem;
-      margin-bottom: 1rem;
+      font-size: 2.2rem;
     }
   }
   
   .alarm-icon {
-    margin: 2rem 0;
+    margin: 0;
+    position: relative;
+    z-index: 2; // Encima del texto
     
     img {
-      width: 150px;
-      height: 150px;
+      width: 320px; // Mucho más grande
+      height: 320px;
       object-fit: contain;
       filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+      transition: filter 0.3s ease;
       
       // Responsive
       @media (max-width: 768px) {
-        width: 120px;
-        height: 120px;
+        width: 260px;
+        height: 260px;
       }
       
       @media (max-width: 480px) {
-        width: 100px;
-        height: 100px;
+        width: 220px;
+        height: 220px;
       }
     }
+  }
+  
+  // Escala de grises cuando la alarma está apagada
+  &.off .alarm-icon img {
+    filter: grayscale(100%) drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
   }
   
   .alarm-status {
     font-size: 1.2rem;
     opacity: 0.8;
-    margin-top: 1rem;
+    margin-top: 2rem;
+    position: absolute;
+    bottom: 10%;
     
     @media (max-width: 480px) {
       font-size: 1rem;
@@ -115,16 +133,26 @@
   }
 }
 
+// Animación de texto deslizante
+@keyframes slideText {
+  0% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(-120%);
+  }
+}
+
 // Animación de pulso para alarma activa
 @keyframes pulse {
   0% {
-    box-shadow: 0 0 0 0 rgba(255, 71, 87, 0.7);
+    box-shadow: 0 0 0 0 rgba(192, 57, 43, 0.7);
   }
   70% {
-    box-shadow: 0 0 0 10px rgba(255, 71, 87, 0);
+    box-shadow: 0 0 0 10px rgba(192, 57, 43, 0);
   }
   100% {
-    box-shadow: 0 0 0 0 rgba(255, 71, 87, 0);
+    box-shadow: 0 0 0 0 rgba(192, 57, 43, 0);
   }
 }
 
@@ -152,6 +180,7 @@
     width: 24px;
     height: 24px;
     object-fit: contain;
+    filter: brightness(0.4); // Gris oscuro para la imagen
   }
   
   &:hover {

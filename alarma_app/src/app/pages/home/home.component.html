@@ -7,7 +7,7 @@
       [class.off]="!activo"
       (click)="toggleAlarma()"
     >
-      <div class="alarm-content">
+      <div class="alarm-content" [class.off]="!activo">
         <div class="alarm-text" *ngIf="activo">
           ALARMA ACTIVADA
         </div>
